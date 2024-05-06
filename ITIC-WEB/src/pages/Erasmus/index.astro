@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+
+---
+
+<Layout title="Erasmus">
+    <div class="sidebar">
+        <h1>Erasmus+</h1>
+        <ul>
+            <li><a href="/Erasmus/Erasmus-Policy-Statement">Erasmus Policy Statement</a></li>
+            <li><a href="https://agora.xtec.cat/iticbcn/wp-content/uploads/usu2389/2024/01/ITICBCN-Erasmus-data-sheet.pdf">ITICBCN Erasmus data sheet</a></li>
+            <li><a href="/Erasmus/Mobilitat-d’alumnat">Mobilitat d’alumnat</a></li>
+            <li><a href="/Erasmus/Mobilitat-de-professorat">Mobilitat de professorat</a></li>
+        </ul>
+    </div>
+    <div id="contenido"></div>
+</Layout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener todos los elementos de enlace en el sidebar
+        var links = document.querySelectorAll('.sidebar a');
+
+        // Iterar sobre cada enlace y agregar un event listener para manejar el clic
+        links.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevenir el comportamiento predeterminado de los enlaces
+
+                // Obtener la URL del enlace clicado
+                var url = this.getAttribute('href');
+
+                // Realizar una petición AJAX para obtener el contenido de la URL
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // Mostrar el contenido en el contenedor
+                            document.getElementById('contenido').innerHTML = xhr.responseText;
+                        } else {
+                            console.error('Error al cargar el contenido:', xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        });
+    });
+</script>
+
+

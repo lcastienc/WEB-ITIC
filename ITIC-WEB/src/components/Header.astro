@@ -1,0 +1,199 @@
+---
+import { Image } from "astro:assets";
+import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut TIC de Barcelona (Color).png";
+---
+
+<header class="BlockHead">
+    <div class="InfoHeader">
+        <div class="Phone">
+            <img src="../../public/assets/Header-Icons/phone.png" alt="Icon Phone" />
+            935128822
+        </div>
+        <div class="Email">
+            <img src="../../public/assets/Header-Icons/mail.png" alt="Icon Mail" />
+            oficines@iticbcn.cat
+        </div>
+        <div class="Location">
+            <img
+                    src="../../public/assets/Header-Icons/marker.png"
+                    alt="Icon Marker"
+            />
+            C/ Sancho de Ávila, 131 08018 Barcelona
+        </div>
+        <div class="Login">
+            <img
+                    src="../../public/assets/Header-Icons/avatar (1).png"
+                    alt="Icon Login"
+            />
+        </div>
+    </div>
+    <div id="container-header">
+        <div id="logo-itic-header">
+            <a href="/">
+                <Image src={LogoITIC} , alt={"Logo del centro escolar ITIC"} />
+            </a>
+        </div>
+        <div id="header-opciones">
+            <a href="/Instituto">Instituto</a>
+            <a href="/Estudios">Estudios</a>
+            <a href="/Erasmus">Erasmus+</a>
+            <a href="/Contacto">Contacto</a>
+        </div>
+        <div id="extensiones-header">
+            <!-- <button onclick="location.href='/registro'">Regístrate aquí</button> -->
+            <!-- <button onclick="location.href='/login'">Inicia sesión</button> -->
+            <a href="/Login">Iniciar sesión</a>
+            <!-- <button onclick="logout()">Cerrar Sesión</button> -->
+            <p><a href="https://app.dinantia.com/login">Dinantia</a></p>
+            <p><a href="https://educaciodigital.cat/iticbcn/moodle/login/index.php">Moodle</a></p>
+        </div>
+    </div>
+</header>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+
+    }
+    #header-opciones div a {
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    #container-header {
+        display: flex;
+        width: 100%;
+        background-color: #f2ecec;
+        height: 70px;
+        align-items: center;
+        /* border: solid 2px black; */
+        box-sizing: border-box;
+        position: sticky;
+        top: 0px;
+    }
+
+    .BlockHead {
+        position: sticky;
+        top: 0px;
+    }
+
+    @media screen and (max-width: 715px) {
+        #container-header {
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+        }
+
+        #header-opciones {
+            flex-direction: column;
+            margin-top: 10px;
+        }
+        #header-opciones > div {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        #logo-itic-header {
+            display: flex;
+            justify-content: center;
+        }
+        #extensiones-header {
+            flex-direction: column;
+            margin: 0;
+            justify-content: center;
+        }
+        #extensiones-header p {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+    }
+    #container-header > div {
+        display: flex;
+    }
+    #logo-itic-header {
+        margin-left: 2%;
+        width: 30%;
+    }
+    #logo-itic-header img {
+        max-width: 120px;
+        max-height: 50px;
+        object-fit: contain;
+    }
+    #header-opciones {
+        display: flex;
+        justify-content: center;
+        gap: 8%;
+        width: 50%;
+    }
+    #extensiones-header {
+        display: flex;
+        justify-content: end;
+        width: 20%;
+        gap: 3%;
+        margin-right: 2%;
+    }
+
+    .InfoHeader {
+        background-color: rgb(133, 133, 133);
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .Phone {
+        display: flex;
+        align-items: center;
+        /* background-color: antiquewhite; */
+        width: 12%;
+        /* justify-content: center; */
+    }
+
+    .Phone img {
+        margin-left: 4%;
+        margin-right: 2%;
+    }
+
+    .Email {
+        display: flex;
+        align-items: center;
+        /* background-color: rgb(187, 120, 33); */
+        width: 19%;
+        /* justify-content: center; */
+    }
+
+    .Email img {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .Location {
+        display: flex;
+        align-items: center;
+        /* background-color: rgb(208, 208, 26); */
+        width: 33%;
+        /* justify-content: center; */
+    }
+
+    .Location img {
+        margin-left: 1%;
+        margin-right: 2%;
+    }
+
+    .Login {
+        /* background-color: blueviolet; */
+        display: flex;
+        align-items: center;
+        width: 36%;
+        justify-content: end;
+        /* margin-right: 2%; */
+    }
+
+    .Login img {
+        margin-right: 2%;
+    }
+</style>

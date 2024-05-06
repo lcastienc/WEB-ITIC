@@ -1,4 +1,6 @@
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 interface Props {
 	title: string;
 }
@@ -17,9 +19,21 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+	<Header/>
+	<slot />
+	<Footer/>
 	</body>
 </html>
+
+<style>
+	body{
+		margin: 0;
+		background-color: rgb(48 239 188);
+	}
+</style>
+
+
+<!--
 <style is:global>
 	:root {
 		--accent: 136, 58, 234;
@@ -34,7 +48,7 @@ const { title } = Astro.props;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background-color: lightslategray;
 		background-size: 224px;
 	}
 	code {
@@ -49,3 +63,5 @@ const { title } = Astro.props;
 			monospace;
 	}
 </style>
+-->
+
