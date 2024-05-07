@@ -1,15 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Carousel from '../components/Carousel.astro';
+import NoticeCard from "../components/noticeCard.astro";
+import preinscription from '../../public/assets/PostImages/Preinscripcio.png'
+
 ---
 
 <Layout title="ITIC">
-	<main>
 
-	</main>
-	<!--
-			<main>
-		<svg
+
+	<main>
+		<!--<svg
 			class="astro-a"
 			width="495"
 			height="623"
@@ -36,7 +38,7 @@ import Card from '../components/Card.astro';
 					<stop offset="1" stop-opacity="0.2"></stop>
 				</linearGradient>
 			</defs>
-		</svg>
+		</svg>-->
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
@@ -63,17 +65,30 @@ import Card from '../components/Card.astro';
 				title="Community"
 				body="Come say hi to our amazing Discord community. ❤️"
 			/>
+			<NoticeCard
+			href="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
+			title="Preinscripció 2024-2025: terminis, requisits i resta d’informació"
+			publicationDate="06/03/24"
+			author="ITICBCN"
+			imageUrl='../../public/assets/PostImages/Preinscripcio.png'
+			body="Al llarg dels mesos d’abril i maig desenvoluparem les Jornades de Portes Obertes del nostre institut, on explicarem els trets característics així com el funcionament i podrem resoldre els dubtes que pugueu tenir.Podeu consultar les dates i informacions sobre les jornades de Portes Obertes del…  "
+			readMoreUrl="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
+			/>
 		</ul>
+		<Carousel/>
 	</main>
-	-->
+
+
 </Layout>
+<!--
 <style>
 	main{
 		margin: 0 auto;
 		background-color: rgb(48 239 188);
 	}
 </style>
-<!--
+-->
+
 <style>
 	main {
 		margin: auto;
@@ -132,4 +147,4 @@ import Card from '../components/Card.astro';
 		padding: 0;
 	}
 </style>
--->
+

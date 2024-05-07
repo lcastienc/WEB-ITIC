@@ -1,0 +1,58 @@
+---
+interface Props {
+    title: string;
+    body: string;
+    href: string;
+    imageUrl: string; // Nueva propiedad para la URL de la imagen
+    publicationDate: string; // Nueva propiedad para la fecha de publicación
+    author: string; // Nueva propiedad para el autor de la publicación
+    readMoreUrl: string;
+}
+
+const { href, title, body, imageUrl, publicationDate, author, readMoreUrl } = Astro.props;
+---
+
+<li class="link-card">
+    <a href={href}>
+        <h2>{title}</h2>
+        <span>{publicationDate}</span> <!-- Fecha de publicación -->
+        <p>
+            {body}
+            <a href={readMoreUrl}>
+                Llegeix mes
+            </a>
+        </p>
+        <div class="image-container">
+            <img src={imageUrl} alt="Imagen" /> <!-- URL de la imagen -->
+        </div>
+        <p>{author}</p> <!-- Autor de la publicación -->
+    </a>
+</li>
+
+
+<style>
+    .link-card .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .link-card .content img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px; /* Ajusta el margen según necesites */
+    }
+
+    .link-card .content .metadata {
+        font-size: 0.8rem;
+        color: #888;
+    }
+    .image-container {
+        margin-top: 10px; /* Ajusta el margen superior según necesites */
+        text-align: center; /* Centra la imagen */
+    }
+
+    .image-container img {
+        max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+        height: auto; /* Permite que la imagen conserve su proporción */
+    }
+</style>

@@ -1,3 +1,90 @@
 ---
+import { Image } from "astro:assets";
+//Actuales
+import apple from '../../public/assets/carousel-logos/actual/apple.svg'
+import atom from '../../public/assets/carousel-logos/actual/atom.svg'
+import behance from '../../public/assets/carousel-logos/actual/behance.svg'
+import discord from '../../public/assets/carousel-logos/actual/discord.svg'
+import facebook from '../../public/assets/carousel-logos/actual/facebook.svg'
+import github from '../../public/assets/carousel-logos/actual/github.svg'
+import google from '../../public/assets/carousel-logos/actual/google.svg'
+import instagram from '../../public/assets/carousel-logos/actual/instagram.svg'
+import linkedin from '../../public/assets/carousel-logos/actual/linkedin.svg'
+import nestle from '../../public/assets/carousel-logos/actual/nestle.svg'
+import photoshop from '../../public/assets/carousel-logos/actual/photoshop.svg'
 
+//Pasados
+import postgres from '../../public/assets/carousel-logos/pasados/postgre.svg'
+import pinterest from '../../public/assets/carousel-logos/pasados/pinterest.svg'
+import spotify from '../../public/assets/carousel-logos/pasados/spotify.svg'
+import telegram from '../../public/assets/carousel-logos/pasados/telegram.svg'
+import tiktok from '../../public/assets/carousel-logos/pasados/tik-tok.svg'
+import tripadvisor from '../../public/assets/carousel-logos/pasados/tripadvisor.svg'
+import twitter from '../../public/assets/carousel-logos/pasados/twitter.svg'
+import ubuntu from '../../public/assets/carousel-logos/pasados/ubuntu.svg'
+import vk from '../../public/assets/carousel-logos/pasados/vk.svg'
+import whatsapp from '../../public/assets/carousel-logos/pasados/whatsapp.svg'
+import youtube from '../../public/assets/carousel-logos/pasados/youtube.svg'
 ---
+
+<div class="carousel">
+    <h2>Empresas con acuerdos actuales</h2>
+    <div class="carousel-container current">
+        <div class="carousel-slide">
+            <img src={apple} alt="logo apple" />
+            <Image src={atom} alt="logo atom" />
+            <Image src={behance} alt="logo behance" />
+            <Image src={discord} alt="logo discord" />
+            <Image src={facebook} alt="logo facebook" />
+            <Image src={github} alt="logo github" />
+            <Image src={google} alt="logo google" />
+            <Image src={instagram} alt="logo instagram" />
+            <Image src={linkedin} alt="logo linkedin" />
+            <Image src={nestle} alt="logo nestle" />
+            <Image src={photoshop} alt="logo photoshop" />
+        </div>
+    </div>
+
+    <h2>Empresas con acuerdos pasados</h2>
+    <div class="carousel-container past">
+        <div class="carousel-slide">
+
+            <Image src={pinterest} alt="logo pinterest" />
+            <Image src={spotify} alt="logo spotify" />
+            <Image src={telegram} alt="logo telegram" />
+            <Image src={tiktok} alt="logo tiktok" />
+            <Image src={tripadvisor} alt="logo tripadvisor" />
+            <Image src={twitter} alt="logo twitter" />
+            <Image src={ubuntu} alt="logo ubuntu" />
+            <Image src={vk} alt="logo vk" />
+            <Image src={whatsapp} alt="logo whatsapp" />
+            <Image src={youtube} alt="logo youtube" />
+        </div>
+    </div>
+</div>
+
+<style>
+    .carousel {
+        margin: 20px auto;
+        width: 80%;
+    }
+
+    .carousel h2 {
+        text-align: center;
+    }
+
+    .carousel-container {
+        overflow: hidden;
+    }
+
+    .carousel-slide {
+        display: flex;
+    }
+
+    .carousel-slide img {
+        width: 100px; /* Ajusta el tamaño de los logos según necesites */
+        height: auto;
+        margin: 0 10px;
+    }
+
+</style>
