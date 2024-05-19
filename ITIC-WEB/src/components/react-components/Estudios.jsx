@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './estudios.css'
 
-const Estudios = () => {
+const Estudios = ({ mostrarDetalle }) => {
 
     const [mostrarInformacion, setMostrarInformacion] = useState({
         SMX: false,
@@ -40,7 +40,7 @@ const Estudios = () => {
     };
 
     return (
-        <div>
+        
             <div id="container-estudios">
                 <div className="titulo">
                     <h1>Estudios</h1>
@@ -85,24 +85,25 @@ const Estudios = () => {
                     </div>
                 </section>
 
-                <section id="bloque-informacion-estudios">
-                    <div id="bloquePruebaEstudios">
-                        {Object.keys(mostrarInformacion).map(clave => {
-                            if (mostrarInformacion[clave]) {
-                                return (
-                                    <div key={clave}>
-                                        {renderInformacion(clave)}
-                                    </div>
-                                );
-                            }
-                            return null;
-                        })}
-                    </div>
-                </section>
+                {mostrarDetalle && (
+                    <section id="bloque-informacion-estudios">
+                        <div id="bloquePruebaEstudios">
+                            {Object.keys(mostrarInformacion).map(clave => {
+                                if (mostrarInformacion[clave]) {
+                                    return (
+                                        <div key={clave}>
+                                            {renderInformacion(clave)}
+                                        </div>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+                    </section>
+                )}
             </div>
-        </div>
+        
     );
 }
 
 export default Estudios;
-

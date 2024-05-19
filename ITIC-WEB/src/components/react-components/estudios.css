@@ -1,5 +1,6 @@
 #container-estudios {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -19,6 +20,8 @@
     justify-content: center;
     margin-top: 30px;
     width: 100%;
+    position: relative;
+    /* z-index: 999; */
 }
 
 #section-estudios > div {
