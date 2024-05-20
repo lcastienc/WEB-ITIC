@@ -1,0 +1,28 @@
+Finalistes al concurs ProgramaMe
+
+Daniel Moreno Arellano19/02/24  
+La setmana passada es van fer les proves per seleccionar els participants del concurs ProgramaMe.
+
+Es tracta d’un concurs destinat a alumnat de programació, tant de grau superior com de grau mitjà, en el que equips de 3 persones del mateix centre competeixen en la resolució d’entre 8 i 12 problemes en Java, C o C++ durant un temps límit de 4 hores.
+
+Finalment, hi van participar 8 alumnes, 4 de DAM1 i 4 de DAW1.
+
+L’equip final per anar a l’Institut Bosc de la Coma d’Olot el dimecres 20 de març de 2024, estarà format per 3 persones:
+
+Moisés D. Z.,  DAW1
+
+Lua T. H., DAM1
+
+Eric de la M. M., DAW1
+
+Eric A. L., DAM1 (suplent)
+
+El Moisés i la Lua van resoldre 3 dels 5 exercicis.
+
+La tercera posició va estar molt renyida. Els dos participants en van resoldre 2, però l’Eric de la M. els va completar més ràpidament.
+
+Molt bona sort equip! 👏
+
+Concurs ProgramaMe Concurs ProgramaMe Concurs ProgramaMe Concurs ProgramaMe Concurs ProgramaMe
+FacebookTwitterWhatsAppGmail
+CFGS Desenvolupament d'Aplicacions Multiplataforma (DAM) (ICB0), CFGS Desenvolupament d'Aplicacions Web (DAW) (ICC0), Cicles Formatius (CF), Cicles Formatius de grau superior (CFGS), Portada 0
