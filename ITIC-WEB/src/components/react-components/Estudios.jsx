@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import './estudios.css';
 
 const Estudios = ({ mostrarDetalle }) => {
@@ -54,7 +55,7 @@ const Estudios = ({ mostrarDetalle }) => {
                 </div>
             </section>
 
-            {mostrarDetalle && mostrarInformacion && (
+            {mostrarDetalle && (
                 <section id="bloque-informacion-estudios">
                     <div id="bloquePruebaEstudios" dangerouslySetInnerHTML={{ __html: mostrarInformacion }}>
                     </div>
