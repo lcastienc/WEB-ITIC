@@ -4,18 +4,14 @@ import Card from '../components/Card.astro';
 import Carousel from '../components/Carousel.astro';
 import NoticeCard from "../components/noticeCard.astro";
 import logoItic from '../../public/assets/ITIC-LOGOs/logo horitzontal Institut TIC de Barcelona (Color).png'
-import DefaultButton from '../components/react-components/DefaultButton.tsx'
-import FormacionesItic from '../components/react-components/FormacionesItic.tsx'
-import ButtonStyle2 from '../components/react-components/ButtonStyle2.tsx'
-import Noticias from '../components/react-components/NoticiasHome.tsx'
 import { Image } from 'astro:assets';
 import Estudios from '../components/react-components/Estudios.jsx';
 ---
 
 <Layout title="ITIC">
 
-	<main>
-		<>        
+    <main>
+        <>        
         <div id="container-body">              
             <section id="section-container">
                 <div id="bloque1">
@@ -27,9 +23,9 @@ import Estudios from '../components/react-components/Estudios.jsx';
                             <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga, velit corporis nesciunt laudantium nemo natus consequuntur perferendis quas repellendus ad.</h3>
                         </div>
                         <div id="botones">
-                            <DefaultButton h2="Puertas Abiertas" classProp="puertas-abiertas" />
-                            <DefaultButton h2="Matriculación" classProp="matriculacion" />
-                          </div>
+                            <button class="default-button puertas-abiertas">Puertas Abiertas</button>
+                            <button class="default-button matriculacion">Matriculación</button>
+                        </div>
                     </div>
                 </div>  
             </section>
@@ -41,63 +37,76 @@ import Estudios from '../components/react-components/Estudios.jsx';
             </div>
             
 
-          <div class="titulo">
-            <h1>Actualidad</h1>
-        </div>
-        <section id="section-noticias">
-            
-            <div id="bloqueActualidad">
-                    <div>
-                        <NoticeCard
-                        href="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
-                        title="Preinscripció 2024-2025: terminis, requisits i resta d’informació"
-                        publicationDate="06/03/24"
-                        author="ITICBCN"
-                        imageUrl='../../public/assets/PostImages/Preinscripcio.png'
-                        body="Al llarg dels mesos d’abril i maig desenvoluparem les Jornades de Portes Obertes del nostre institut, on explicarem els trets característics així com el funcionament i podrem resoldre els dubtes que pugueu tenir.Podeu consultar les dates i informacions sobre les jornades de Portes Obertes del…  "
-                        readMoreUrl="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
-                        />
-                    </div>
+            <div class="titulo">
+                <h1>Actualidad</h1>
+            </div>
+            <section id="section-noticias">
+                
+                <div id="bloqueActualidad">
+                        <div>
+                            <NoticeCard
+                            href="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
+                            title="Preinscripció 2024-2025: terminis, requisits i resta d’informació"
+                            publicationDate="06/03/24"
+                            imageUrl='../../public/assets/PostImages/Preinscripcio.png'
+                            body="Al llarg dels mesos d’abril i maig desenvoluparem les Jornades de Portes Obertes del nostre institut, on explicarem els trets característics així com el funcionament i podrem resoldre els dubtes que pugueu tenir.Podeu consultar les dates i informacions sobre les jornades de Portes Obertes del…  "
+                            />
+                        </div>
 
-                    <div>
-                        <NoticeCard
-                        href="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
-                        title="Preinscripció 2024-2025: terminis, requisits i resta d’informació"
-                        publicationDate="06/03/24"
-                        author="ITICBCN"
-                        imageUrl='../../public/assets/PostImages/Preinscripcio.png'
-                        body="Al llarg dels mesos d’abril i maig desenvoluparem les Jornades de Portes Obertes del nostre institut, on explicarem els trets característics així com el funcionament i podrem resoldre els dubtes que pugueu tenir.Podeu consultar les dates i informacions sobre les jornades de Portes Obertes del…  "
-                        readMoreUrl="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
-                        />
-                    </div>
+                        <div>
+                            <NoticeCard
+                            href="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
+                            title="Preinscripció 2024-2025: terminis, requisits i resta d’informació"
+                            publicationDate="06/03/24"
+                            imageUrl='../../public/assets/PostImages/Preinscripcio.png'
+                            body="Al llarg dels mesos d’abril i maig desenvoluparem les Jornades de Portes Obertes del nostre institut, on explicarem els trets característics així com el funcionament i podrem resoldre els dubtes que pugueu tenir.Podeu consultar les dates i informacions sobre les jornades de Portes Obertes del…  "
+                            />
+                        </div>
 
-                    <div>
-                        <NoticeCard
-                        href="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
-                        title="Preinscripció 2024-2025: terminis, requisits i resta d’informació"
-                        publicationDate="06/03/24"
-                        author="ITICBCN"
-                        imageUrl='../../public/assets/PostImages/Preinscripcio.png'
-                        body="Al llarg dels mesos d’abril i maig desenvoluparem les Jornades de Portes Obertes del nostre institut, on explicarem els trets característics així com el funcionament i podrem resoldre els dubtes que pugueu tenir.Podeu consultar les dates i informacions sobre les jornades de Portes Obertes del…  "
-                        readMoreUrl="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
-                        />
-                    </div>
-            </div>            
-        </section>
+                        <div>
+                            <NoticeCard
+                            href="https://agora.xtec.cat/iticbcn/portada/preinscripcio-2024-2025-terminis-requisits-i-resta-dinformacio/"
+                            title="Preinscripció 2024-2025: terminis, requisits i resta d’informació"
+                            publicationDate="06/03/24"
+                            imageUrl='../../public/assets/PostImages/Preinscripcio.png'
+                            body="Al llarg dels mesos d’abril i maig desenvoluparem les Jornades de Portes Obertes del nostre institut, on explicarem els trets característics així com el funcionament i podrem resoldre els dubtes que pugueu tenir.Podeu consultar les dates i informacions sobre les jornades de Portes Obertes del…  "
+                            />
+                        </div>
+                </div>            
+            </section>
 
-        <div id="container-carousel">
-            <Carousel />
-        </div>
+            <div id="container-carousel">
+                <Carousel />
+            </div>
           
 
 
-    </div>
-  </>
+        </div>
+        </>
 
+
+    </main>
 
 </Layout>
 
+
 <style>
+    .titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px; 
+    }
+.titulo h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #2f29a1;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
 	.astro-a {
 		position: absolute;
 		top: -32px;
@@ -150,78 +159,86 @@ import Estudios from '../components/react-components/Estudios.jsx';
     display: flex;
     flex-wrap: wrap;
 }
-#section-container{
-    margin-top: 30px;
+#section-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
-}
-#bloque1{
+    background-color: #f4f4f4;
+    padding: 40px 0;
+  }
+  #bloque1 {
     display: flex;
-    width: 80%;
-    justify-content: center;
     flex-direction: column;
-	background-color: chocolate;
-}
-#imagen-main img{
+    align-items: center;
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  #imagen-main img {
     object-fit: cover;
     width: 100%;
     height: auto;
     max-width: 60%;
-}
-#imagen-main{
+  }
+#imagen-main {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 14px;
-    
-}
-#bloque2{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #bloque2 {
     display: flex;
-    margin-top: 50px;
-}
-#descripcion{
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+  }
+  #descripcion {
+    width: 60%;
+    text-align: left;
+    margin-right: 20px;
+  }
+  #botones {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-    width: 50%;
-    margin-left: 5%;
-}
-#botones{
-    display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    gap: 35px;
-}
+    gap: 20px;
+    width: 30%;
+  }
 
-.puertas-abiertas, .matriculacion {
-  width: 100px; /* o el tamaño que prefieras */
-  font-size: 20px; /* Aumenta el tamaño del texto */
-  padding: 10px 20px; /* Añade más espacio alrededor del texto */
-  background-color: #4CAF50; /* Cambia el color de fondo */
-  color: white; /* Cambia el color del texto */
-  border: none;
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+  .puertas-abiertas {
+    background-color: #007BFF; 
+  }
 
-.DefaultButton{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: solid 2px black;
-    width: 70%;
-    min-width: 150px;
-    height: 35px;
-    text-align: center; 
-    background-color: blue;
-    color: #f2f2f2;
-    font-size: 20px;
-}
+  .matriculacion {
+    background-color: #30EFBC; 
+  }
+
+  .puertas-abiertas:hover {
+    background-color: #0056b3; 
+  }
+
+  .matriculacion:hover {
+    background-color: #1f9a79; 
+  }
+  
+
+.default-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
 /* Bloque 2 Estudios */
 
 #estudios-container-home{
@@ -230,7 +247,9 @@ import Estudios from '../components/react-components/Estudios.jsx';
     width: 100%;
 }
 #etiqueta-estudios{
-    width: 80%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 

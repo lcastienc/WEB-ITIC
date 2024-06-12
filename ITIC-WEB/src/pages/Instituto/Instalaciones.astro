@@ -1,7 +1,43 @@
----
+<div class="content">
+    <header class="entry-header">
+        <h1 class="entry-title">Instalaciones del Institut TIC de Barcelona</h1>
+    </header>
+    <div class="entry-content">
+        <p>En esta sección se añadirá próximamente con información detallada sobre las instalaciones del Institut TIC de Barcelona.</p>
+    </div>
+</div>
 
-import Layout from "../../layouts/Layout.astro";---
+<style>
+  .content {
+      padding: 40px;
+      background-color: #f2f2f2; 
+      margin-left: 20px; 
+      margin-top: 20px;
+  }
 
-<Layout title="">
+  .entry-header {
+      margin-bottom: 20px;
+      position: static;
+  }
 
-</Layout>
+  .entry-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #008C72; 
+  }
+
+  .entry-content {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #333; 
+  }
+
+  @media (max-width: 768px) {
+      .content {
+          margin-left: 0;
+          margin-top: 0;
+          padding: 20px; 
+      }
+  }
+</style>

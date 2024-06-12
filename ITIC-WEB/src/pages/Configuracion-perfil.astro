@@ -1,0 +1,258 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Configuración de Perfil">
+  <main class="profile-container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <h2>Configuración de Perfil</h2>
+      </div>
+      <form method="post" class="profile-form" id="profileForm" enctype="multipart/form-data">
+        <div class="profile-field">
+          <label for="user-nombre">Nombre</label>
+          <input id="user-nombre" type="text" name="nombre" autocomplete="on" required />
+        </div>
+        <div class="profile-field">
+          <label for="user-apellidos">Apellidos</label>
+          <input id="user-apellidos" type="text" name="apellidos" autocomplete="on" required />
+        </div>
+        <div class="profile-field">
+          <label for="user-fotoPerfil">Foto de Perfil</label>
+          <input id="user-fotoPerfil" type="file" name="fotoPerfil" accept="image/*" />
+        </div>
+        <div id="profile-img-container"></div>
+        <div class="profile-actions">
+          <button type="submit">Actualizar</button>
+          <button type="button" id="remove-fotoPerfil">Eliminar Foto de Perfil</button>
+          <button type="button" id="cancelar-btn" class="cancel-button">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      window.location.href = '/Login';
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/user', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        document.getElementById('user-nombre').value = data.nombre;
+        document.getElementById('user-apellidos').value = data.apellidos;
+        if (data.fotoPerfil) {
+          const img = document.createElement('img');
+          img.src = `http://localhost:3000${data.fotoPerfil}`;
+          img.alt = 'Foto de perfil';
+          img.width = 100;
+          img.height = 100;
+          img.style.borderRadius = '50%';
+          document.getElementById('profile-img-container').appendChild(img);
+        }
+      } else {
+        console.error('Error al obtener datos del usuario');
+        window.location.href = '/Login';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      window.location.href = '/Login';
+    }
+  });
+
+  document.getElementById('profileForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = '/Login';
+      return;
+    }
+
+    const nombre = document.getElementById('user-nombre').value;
+    const apellidos = document.getElementById('user-apellidos').value;
+    const fotoPerfilInput = document.getElementById('user-fotoPerfil');
+    const fotoPerfil = fotoPerfilInput.files[0];
+
+    const formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('apellidos', apellidos);
+    if (fotoPerfil) {
+      formData.append('fotoPerfil', fotoPerfil);
+    } else {
+      formData.append('fotoPerfil', "");  
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/user', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        alert('Perfil actualizado con éxito');
+        window.location.reload(); 
+      } else {
+        alert('Error al actualizar el perfil');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al actualizar el perfil');
+    }
+  });
+
+  document.getElementById('remove-fotoPerfil').addEventListener('click', async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = '/Login';
+      return;
+    }
+
+    const nombre = document.getElementById('user-nombre').value;
+    const apellidos = document.getElementById('user-apellidos').value;
+
+    const formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('apellidos', apellidos);
+    formData.append('removeFotoPerfil', 'true');
+
+    try {
+      const response = await fetch('http://localhost:3000/user', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        alert('Foto de perfil eliminada con éxito');
+        window.location.reload(); 
+      } else {
+        alert('Error al eliminar la foto de perfil');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al eliminar la foto de perfil');
+    }
+  });
+
+  document.getElementById('cancelar-btn').addEventListener('click', () => {
+    window.location.href = 'http://localhost:4321/';
+  });
+</script>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f4f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .profile-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .profile-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-field {
+    margin-bottom: 15px;
+  }
+
+  .profile-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .profile-field input[type="text"],
+  .profile-field input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  #profile-img-container {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  #profile-img-container img {
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 50%;
+  }
+
+  .profile-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .profile-actions button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .profile-actions button:hover {
+    background: #45a049;
+  }
+
+  .profile-actions .cancel-button {
+    background: #f44336;
+  }
+
+  .profile-actions .cancel-button:hover {
+    background: #e53935;
+  }
+</style>

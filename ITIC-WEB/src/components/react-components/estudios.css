@@ -18,10 +18,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 30px;
     width: 100%;
-    position: relative;
-    /* z-index: 999; */
+    gap: 20px;
 }
 
 #section-estudios > div {
@@ -29,24 +27,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24%;
+    width: 19%;
     height: 100px;
     border: solid 2px black;
-    background-color: #f2f2f2;
+    background-color: #3A31F4;
+    color: white;
     flex-direction: column;
     gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#section-estudios > div:hover {
+    background-color: #2A23C2;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
+    background-color: white;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     width: 100%;
     top: 100%;
     left: 0;
+    border: solid 1px #ddd;
 }
 
 .dropdown-content a {
@@ -54,6 +60,11 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
 }
 
 .dropdown:hover .dropdown-content {
@@ -62,20 +73,20 @@
 
 /* --------------------- Bloque de informacion ---------------------------- */
 
-#bloque-informacion-estudios{
+#bloque-informacion-estudios {
     margin-top: 40px;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 80%;
 }
-#bloquePruebaEstudios{
+
+#bloquePruebaEstudios {
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 20px;
     width: 97%;
-    background-color: aqua;
+    background-color: #e0f7fa;
     border: 1px solid black;
-    gap: 20px;;
+    gap: 20px;
 }
-

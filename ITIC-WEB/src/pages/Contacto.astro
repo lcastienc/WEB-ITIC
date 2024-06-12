@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contacto">
-  <main>
+  <main class="contact-main">
     <!-- Información de contacto -->
     <section class="contact-info">
       <h2>Información de contacto</h2>
@@ -22,32 +22,52 @@ import Layout from "../layouts/Layout.astro";
   </main>
 </Layout>
 
-<script>
-  (function() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = '/Login';
-      return;
+<script src="../../public//js/verifyToken.js"></script>
+
+<style>
+  .contact-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .contact-info, .map-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-info h2, .map-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p, .map-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .map-section iframe {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .contact-main {
+      grid-template-columns: 1fr;
     }
 
-    fetch('http://localhost:3000/verifyToken', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    }).then(response => {
-      if (!response.ok) {
-        window.location.href = '/login';
-      }
-      return response.json();
-    }).then(data => {
-      if (!data.valid) {
-        window.location.href = '/login';
-      }
-    }).catch(error => {
-      console.error('Error verifying token:', error);
-      window.location.href = '/login';
-    });
-  })();
-</script>
+    .contact-info, .map-section {
+      width: 100%;
+    }
+
+    .contact-info {
+      margin-bottom: 20px;
+    }
+  }
+</style>

@@ -1,45 +1,22 @@
----
-
-import Layout from "../../layouts/Layout.astro";---
-
-<Layout title="Consejo Escolar">
-    <div class="container">
-        <h1>Consejo Escolar</h1>
-        <p>
-            El Consell Escolar és l’òrgan col·legiat de participació de la comunitat escolar en el govern del centre. En el consell escolar hi ha representats tots els col·lectius que intervenen en la comunitat educativa i per aquesta raó és molt important participar activament en l’elecció dels seus membres.
-        </p>
-        <p>
-            En el cas de l’Institut TIC de Barcelona la composició del Consell Escolar és la següent:
-        </p>
-
+<div class="content">
+    <header class="entry-header">
+        <h1 class="entry-title">Consell Escolar</h1>
+    </header>
+    <div class="entry-content">
+        <p>El Consell Escolar és l’òrgan col·legiat de participació de la comunitat escolar en el govern del centre. En el consell escolar hi ha representats tots els col·lectius que intervenen en la comunitat educativa i per aquesta raó és molt important participar activament en l’elecció dels seus membres.</p>
+        <p>En el cas de l’Institut TIC de Barcelona la composició del Consell Escolar és la següent:</p>
         <ul>
-            <li>
-                La persona que exerceix la direcció del centre.
-            </li>
-            <li>
-                La persona que exerceix el càrrec de cap d’estudis.
-            </li>
-            <li>
-                Una persona designada per l’Ajuntament de Barcelona.
-            </li>
-            <li>
-                Una persona representant del PAS.
-            </li>
-            <li>
-                Cinc persones representants del claustre del professorat.
-            </li>
-            <li>
-                Tres persones representants de l’alumnat del centre.
-            </li>
-            <li>
-                Dues persones representants dels responsables de l’alumnat menor d’edat (mares, pares, tutors/res legals). En el supòsit que es constitueixen al centre associacions d’AFA l’associació més representativa, d’acord amb el seu nombre d’associats, designaria una d’aquestes representants.
-            </li>
-            <li>
-                La persona que exerceix el càrrec de la Secretari/ària del centre exercirà el càrrec de Secretari/ària del Consell (amb veu però sense vot); responsable de la redacció i l’aixecament de les actes de les sessions.
-            </li>
+            <li>La persona que exerceix la direcció del centre.</li>
+            <li>La persona que exerceix el càrrec de cap d’estudis.</li>
+            <li>Una persona designada per l’Ajuntament de Barcelona.</li>
+            <li>Una persona representant del PAS.</li>
+            <li>Cinc persones representants del claustre del professorat.</li>
+            <li>Tres persones representants de l’alumnat del centre.</li>
+            <li>Dues persones representants dels responsables de l’alumnat menor d’edat (mares, pares, tutors/res legals). En el supòsit que es constitueixen al centre associacions d’AFA l’associació més representativa, d’acord amb el seu nombre d’associats, designaria una d’aquestes representants.</li>
+            <li>La persona que exerceix el càrrec de la Secretari/ària del centre exercirà el càrrec de Secretari/ària del Consell (amb veu però sense vot); responsable de la redacció i l’aixecament de les actes de les sessions.</li>
         </ul>
 
-        <p><strong>Funciones</strong></p>
+        <h2>Funcions</h2>
         <p>Corresponen al consell escolar les funcions següents:</p>
         <ul>
             <li>Aprovar el projecte educatiu i les modificacions corresponents per una majoria de tres cinquenes parts dels membres.</li>
@@ -57,4 +34,69 @@ import Layout from "../../layouts/Layout.astro";---
             <li>Qualsevol altra que li sigui atribuïda per les normes legals o reglamentàries.</li>
         </ul>
     </div>
-</Layout>
+</div>
+
+<style>
+  .content {
+      padding: 40px;
+      background-color: #f2f2f2; 
+      margin-left: 20px; 
+      margin-top: 20px; 
+  }
+
+  .entry-header {
+      margin-bottom: 20px;
+      position: static;
+  }
+
+  .entry-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #00574B;
+  }
+
+  .entry-content {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #333; 
+  }
+
+  .entry-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: #004D40; 
+      margin-top: 20px;
+      margin-bottom: 10px;
+  }
+
+  .entry-content ul {
+      list-style-type: disc;
+      padding-left: 20px;
+  }
+
+  .entry-content li {
+      margin-bottom: 10px;
+  }
+
+  .entry-content a {
+      color: #006F5C; 
+      text-decoration: none;
+  }
+
+  .entry-content a:hover {
+      text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+      .content {
+          margin-left: 0;
+          margin-top: 0;
+          padding: 20px; 
+      }
+
+      .entry-content ul {
+          padding-left: 15px;
+      }
+  }
+</style>

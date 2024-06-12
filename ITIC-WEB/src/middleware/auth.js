@@ -1,4 +1,3 @@
-// src/middleware/auth.js
 import jwt from 'jsonwebtoken';
 
 const secretKey = 'fldsmdfr';

@@ -1,0 +1,138 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e6e6e6; 
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.container {
+    padding: 20px;
+}
+
+/* HOME */
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px; 
+    }
+.titulo h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #2f29a1; 
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+/* Estilos globales de header */
+header {
+    top: 0;
+    position: sticky;
+    z-index: 3;
+    background: white;
+    width: 100%;
+}
+
+header .InfoHeader {
+    background-color: rgb(133, 133, 133);
+    display: flex;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+header .InfoHeader div {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+header .InfoHeader img {
+    margin-right: 8px;
+}
+
+header #container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+header #logo-itic-header img {
+    max-width: 120px;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+header #header-opciones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header #header-opciones a {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header #header-opciones a:hover {
+    color: #3A31F4; 
+}
+
+header #extensiones-header {
+    display: flex;
+    gap: 10px;
+}
+
+header #extensiones-header a {
+    color: black;
+}
+
+@media screen and (max-width: 715px) {
+    header #container-header {
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+    }
+
+    header #header-opciones {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    
+    header #extensiones-header {
+        flex-direction: column;
+        margin: 0;
+        justify-content: center;
+    }
+
+    header #extensiones-header p {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+}
+
