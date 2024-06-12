@@ -1,196 +1,261 @@
----
+<div class="entry-body">
 
-import Layout from "../../layouts/Layout.astro";---
-<!--
-<Layout title="Mobilitat d’alumnat">
--->
+    <header class="entry-header">
+        <h1 class="entry-title">Mobilitat d’alumnat</h1>
+    </header><!-- .entry-header -->
 
-    <div class="entry-body">
-
-        <header class="entry-header">
-            <h1 class="entry-title">Mobilitat d’alumnat</h1>
-        </header><!-- .entry-header -->
-
-        <div class="entry-content">
-            <h3>Criteris de selecció d’alumnat per a estades internacionals</h3>
-            <ul>
-                <li><span style="font-weight: 400;">Les beques Erasmus+ són una ajuda econòmica per poder realitzar el Mòdul de Formació en Centres de Treball a l’estranger, per la qual cosa, només l’alumnat de segon curs que compleixi amb els requisits obligatoris pot sol·licitar-les.</span></li>
-                <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Amb l’objectiu d’obtenir una previsió de l’aprofitament de les estades, es farà una valoració prèvia basant-se en els següents criteris.&nbsp;</span></li>
-                <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Per optar a una beca Erasmus+ cal complir amb els requisits obligatoris i no haver rebut mai un expedient disciplinari.</span></li>
-            </ul>
-            <table>
-                <tbody>
+    <div class="entry-content">
+        <h3>Criteris de selecció d’alumnat per a estades internacionals</h3>
+        <ul>
+            <li>Les beques Erasmus+ són una ajuda econòmica per poder realitzar el Mòdul de Formació en Centres de Treball a l’estranger, per la qual cosa, només l’alumnat de segon curs que compleixi amb els requisits obligatoris pot sol·licitar-les.</li>
+            <li>Amb l’objectiu d’obtenir una previsió de l’aprofitament de les estades, es farà una valoració prèvia basant-se en els següents criteris.</li>
+            <li>Per optar a una beca Erasmus+ cal complir amb els requisits obligatoris i no haver rebut mai un expedient disciplinari.</li>
+        </ul>
+        <table>
+            <thead>
                 <tr>
-                    <td><b>Criteri</b></td>
-                    <td colspan="2"><b>Concepte</b></td>
+                    <th>Criteri</th>
+                    <th colspan="2">Concepte</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
-                    <td><b>1</b></td>
-                    <td colspan="2"><b>Formació en idiomes</b></td>
-                </tr>
-                <tr>
-                    <td rowspan="8"></td>
-                    <td><b>Cal aportar titulació oficial</b></td>
-                    <td><b>Puntuació</b></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">nivell C1 del país de destí</span></td>
-                    <td><span style="font-weight: 400;">4 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">nivell B2 del país de destí</span></td>
-                    <td><span style="font-weight: 400;">3 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">nivell B1 del país de destí&nbsp;</span></td>
-                    <td><span style="font-weight: 400;">2 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">nivell C1 anglès (si no és idioma país destí)</span></td>
-                    <td><span style="font-weight: 400;">3 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">nivell B2 anglès (si no és idioma país destí)</span></td>
-                    <td><span style="font-weight: 400;">2 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">nivell B1 anglès o superar una prova&nbsp;</span></td>
-                    <td><b>1 punt i requisit obligatori</b></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">0,5 punts nivell B1 de qualsevol idioma&nbsp;</span></td>
-                    <td><span style="font-weight: 400;">de 0 a 1 punt (màx 1 punt en total)</span></td>
-                </tr>
-                <tr>
-                    <td><b>2</b></td>
-                    <td colspan="2"><b>Altres estudis realitzats i finalitzats</b></td>
-                </tr>
-                <tr>
-                    <td rowspan="4"></td>
-                    <td><b>Cal aportar titulació oficial</b></td>
-                    <td><b>Puntuació</b></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">estudis universitaris</span></td>
-                    <td><span style="font-weight: 400;">2 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">títol de CFGS</span></td>
-                    <td><span style="font-weight: 400;">1 punt</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">0,5 punts títol CFGM</span></td>
-                    <td><span style="font-weight: 400;">0,5 punt</span></td>
-                </tr>
-                <tr>
-                    <td><b>3</b></td>
-                    <td colspan="2"><b>Experiència professional</b></td>
-                </tr>
-                <tr>
-                    <td rowspan="3"></td>
-                    <td><b>Cal aportar l’informe de vida laboral</b></td>
-                    <td><b>Puntuació</b></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">Si té relació amb els estudis actuals</span></td>
-                    <td>
-                        <ul>
-                            <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">2 punts/any</span></li>
-                            <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">0,1666 punts/mes</span></li>
-                            <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Màxim 4 punts</span></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">Si no té relació amb els estudis actuals</span></td>
-                    <td>
-                        <ul>
-                            <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">1 punt/any</span></li>
-                            <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">0,0833 punts/mes&nbsp;</span></li>
-                            <li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Màxim 2 punts</span></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td><b>4</b></td>
-                    <td colspan="2"><b>Informe de l’equip docent / implicació</b></td>
-                </tr>
-                <tr>
-                    <td rowspan="7"></td>
-                    <td><b>Barem</b></td>
-                    <td><b>Puntuació</b></td>
-                </tr>
-                <tr>
-                    <td><strong>Haver acreditat el 80% d’assistència en el conjunt dels mòduls del 1er curs</strong></td>
-                    <td><strong>requisit obligatori</strong></td>
-                </tr>
-                <tr>
-                    <td><b>Informe negatiu d’incidències a classe</b></td>
-                    <td><b>requisit obligatori</b></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">Iniciativa i participació activa a classe</span></td>
-                    <td><span style="font-weight: 400;">de 0 a 1 punt</span></td>
-                </tr>
-                <tr>
-                    <td><b>Currículum vitae amb format Europass i carta de motivació en anglès</b></td>
-                    <td><b>requisit obligatori</b></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">Entrevista amb l’equip docent.</span></td>
-                    <td><span style="font-weight: 400;">de 0 a 1 punt</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">Empresa confirmada per dur a terme la FCT.</span></td>
-                    <td><span style="font-weight: 400;">2 punts</span></td>
-                </tr>
-                <tr>
-                    <td><b>5</b></td>
-                    <td colspan="2"><b>Expedient acadèmic del 1r curs</b></td>
-                </tr>
-                <tr>
-                    <td rowspan="4"></td>
-                    <td><b>Cal aportar el butlletí de notes de primer</b></td>
-                    <td><b>Puntuació</b></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">tots els mòduls aprovats i mitjana notes &gt;= 8</span></td>
-                    <td><span style="font-weight: 400;">3 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">tots els mòduls aprovats i mitjana notes &gt;=&nbsp; 7</span></td>
-                    <td><span style="font-weight: 400;">2 punts</span></td>
-                </tr>
-                <tr>
-                    <td><span style="font-weight: 400;">tots els mòduls aprovats i mitjana notes &gt;= 6</span></td>
-                    <td><b>1 punt i requisit obligatori</b></td>
-                </tr>
-                <tr>
-                    <td><b>6</b></td>
-                    <td colspan="2"><b>Altres (a valorar si s’escau per l’equip docent). Màxim 1 punt</b></td>
+                    <td>1</td>
+                    <td colspan="2">Formació en idiomes</td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2"><span style="font-weight: 400;">Qualsevol altre mèrit que l’alumne/a vulgui que es consideri (estudis musicals, premis esportius o d’altre mena, beques, etc) acompanyat de la documentació adient.</span></td>
+                    <td>Cal aportar titulació oficial</td>
+                    <td>Puntuació</td>
                 </tr>
-                </tbody>
-            </table>
-            <p>&nbsp;</p>
-            <!--<div class="addtoany_share_save_container addtoany_content addtoany_content_bottom"><div class="a2a_kit a2a_kit_size_25 addtoany_list" data-a2a-url="https://agora.xtec.cat/iticbcn/international-mobility/criteris-de-seleccio-dalumnat-per-a-estades-internacionals/" data-a2a-title="Mobilitat d’alumnat" style="line-height: 25px;"><a class="a2a_button_facebook" href="/#facebook" title="Facebook" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: rgb(8, 102, 255); width: 25px; line-height: 25px; height: 25px; background-size: 25px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#fff" d="M28 16c0-6.627-5.373-12-12-12S4 9.373 4 16c0 5.628 3.875 10.35 9.101 11.647v-7.98h-2.474V16H13.1v-1.58c0-4.085 1.849-5.978 5.859-5.978.76 0 2.072.15 2.608.298v3.325c-.283-.03-.775-.045-1.386-.045-1.967 0-2.728.745-2.728 2.683V16h3.92l-.673 3.667h-3.247v8.245C23.395 27.195 28 22.135 28 16"></path></svg></span><span class="a2a_label">Facebook</span></a><a class="a2a_button_twitter" href="/#twitter" title="Twitter" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: rgb(29, 155, 240); width: 25px; line-height: 25px; height: 25px; background-size: 25px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M28 8.557a10 10 0 0 1-2.828.775 4.93 4.93 0 0 0 2.166-2.725 9.7 9.7 0 0 1-3.13 1.194 4.92 4.92 0 0 0-3.593-1.55 4.924 4.924 0 0 0-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.94 4.94 0 0 0-.665 2.477c0 1.71.87 3.214 2.19 4.1a5 5 0 0 1-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174q-.476-.001-.928-.086a4.935 4.935 0 0 0 4.6 3.42 9.9 9.9 0 0 1-6.114 2.107q-.597 0-1.175-.068a13.95 13.95 0 0 0 7.55 2.213c9.056 0 14.01-7.507 14.01-14.013q0-.32-.015-.637c.96-.695 1.795-1.56 2.455-2.55z"></path></svg></span><span class="a2a_label">Twitter</span></a><a class="a2a_button_whatsapp" href="/#whatsapp" title="WhatsApp" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_whatsapp" style="background-color: rgb(18, 175, 10); width: 25px; line-height: 25px; height: 25px; background-size: 25px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" fill-rule="evenodd" d="M16.21 4.41C9.973 4.41 4.917 9.465 4.917 15.7c0 2.134.592 4.13 1.62 5.832L4.5 27.59l6.25-2.002a11.24 11.24 0 0 0 5.46 1.404c6.234 0 11.29-5.055 11.29-11.29 0-6.237-5.056-11.292-11.29-11.292m0 20.69c-1.91 0-3.69-.57-5.173-1.553l-3.61 1.156 1.173-3.49a9.35 9.35 0 0 1-1.79-5.512c0-5.18 4.217-9.4 9.4-9.4s9.397 4.22 9.397 9.4c0 5.188-4.214 9.4-9.398 9.4zm5.293-6.832c-.284-.155-1.673-.906-1.934-1.012-.265-.106-.455-.16-.658.12s-.78.91-.954 1.096c-.176.186-.345.203-.628.048-.282-.154-1.2-.494-2.264-1.517-.83-.795-1.373-1.76-1.53-2.055s0-.445.15-.584c.134-.124.3-.326.45-.488.15-.163.203-.28.306-.47.104-.19.06-.36-.005-.506-.066-.147-.59-1.587-.81-2.173-.218-.586-.46-.498-.63-.505-.168-.007-.358-.038-.55-.045-.19-.007-.51.054-.78.332-.277.274-1.05.943-1.1 2.362-.055 1.418.926 2.826 1.064 3.023.137.2 1.874 3.272 4.76 4.537 2.888 1.264 2.9.878 3.43.85.53-.027 1.734-.633 2-1.297s.287-1.24.22-1.363c-.07-.123-.26-.203-.54-.357z" clip-rule="evenodd"></path></svg></span><span class="a2a_label">WhatsApp</span></a><a class="a2a_button_google_gmail" href="/#google_gmail" title="Gmail" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail" style="background-color: rgb(234, 67, 53); width: 25px; line-height: 25px; height: 25px; background-size: 25px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#fff" d="M6.5 24.504H10v-8.5l-5-3.75v10.75c0 .83.673 1.5 1.5 1.5m15.5 0h3.5a1.5 1.5 0 0 0 1.5-1.5v-10.75l-5 3.75" opacity=".9"></path><path fill="#fff" d="M22 9.504v6.5l5-3.75v-2c0-1.855-2.117-2.912-3.6-1.8"></path><path fill="#fff" d="M10 16.004v-6.5l6 4.5 6-4.5v6.5l-6 4.5" opacity=".9"></path><path fill="#fff" d="M5 10.254v2l5 3.75v-6.5l-1.4-1.05C7.115 7.342 5 8.4 5 10.254"></path></svg></span><span class="a2a_label">Gmail</span></a></div></div>
-        </div>-->
-        <!-- .entry-content -->
+                <tr>
+                    <td></td>
+                    <td>nivell C1 del país de destí</td>
+                    <td>4 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>nivell B2 del país de destí</td>
+                    <td>3 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>nivell B1 del país de destí</td>
+                    <td>2 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>nivell C1 anglès (si no és idioma país destí)</td>
+                    <td>3 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>nivell B2 anglès (si no és idioma país destí)</td>
+                    <td>2 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>nivell B1 anglès o superar una prova</td>
+                    <td>1 punt i requisit obligatori</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>0,5 punts nivell B1 de qualsevol idioma</td>
+                    <td>de 0 a 1 punt (màx 1 punt en total)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td colspan="2">Altres estudis realitzats i finalitzats</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Cal aportar titulació oficial</td>
+                    <td>Puntuació</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>estudis universitaris</td>
+                    <td>2 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>títol de CFGS</td>
+                    <td>1 punt</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>0,5 punts títol CFGM</td>
+                    <td>0,5 punt</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td colspan="2">Experiència professional</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Cal aportar l’informe de vida laboral</td>
+                    <td>Puntuació</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Si té relació amb els estudis actuals</td>
+                    <td>
+                        <ul>
+                            <li>2 punts/any</li>
+                            <li>0,1666 punts/mes</li>
+                            <li>Màxim 4 punts</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Si no té relació amb els estudis actuals</td>
+                    <td>
+                        <ul>
+                            <li>1 punt/any</li>
+                            <li>0,0833 punts/mes</li>
+                            <li>Màxim 2 punts</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td colspan="2">Informe de l’equip docent / implicació</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Barem</td>
+                    <td>Puntuació</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Haver acreditat el 80% d’assistència en el conjunt dels mòduls del 1er curs</td>
+                    <td>requisit obligatori</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Informe negatiu d’incidències a classe</td>
+                    <td>requisit obligatori</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Iniciativa i participació activa a classe</td>
+                    <td>de 0 a 1 punt</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Currículum vitae amb format Europass i carta de motivació en anglès</td>
+                    <td>requisit obligatori</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Entrevista amb l’equip docent.</td>
+                    <td>de 0 a 1 punt</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Empresa confirmada per dur a terme la FCT.</td>
+                    <td>2 punts</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td colspan="2">Expedient acadèmic del 1r curs</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Cal aportar el butlletí de notes de primer</td>
+                    <td>Puntuació</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>tots els mòduls aprovats i mitjana notes >= 8</td>
+                    <td>3 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>tots els mòduls aprovats i mitjana notes >= 7</td>
+                    <td>2 punts</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>tots els mòduls aprovats i mitjana notes >= 6</td>
+                    <td>1 punt i requisit obligatori</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td colspan="2">Altres (a valorar si s’escau per l’equip docent). Màxim 1 punt</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2">Qualsevol altre mèrit que l’alumne/a vulgui que es consideri (estudis musicals, premis esportius o d’altre mena, beques, etc) acompanyat de la documentació adient.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&nbsp;</p>
+    </div><!-- .entry-content -->
 
-        <footer class="entry-footer">
-        </footer><!-- .entry-footer -->
+    <footer class="entry-footer">
+    </footer><!-- .entry-footer -->
 
-    </div>
-
-<!--
-</Layout>
--->
+</div>
 
 <style>
-    *{
-        color: white;
-    }
+  .entry-body {
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin: 20px 0;
+  }
+
+  .entry-header {
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      position: static;
+  }
+
+  .entry-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: #2f29a1;
+  }
+
+  .entry-content p, .entry-content li, .entry-content td {
+      font-family: 'Outfit', sans-serif;
+      color: #333;
+      line-height: 1.6;
+  }
+
+  .entry-content h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600; 
+      color: #3A31F4; 
+      margin-top: 20px;
+  }
+
+  .entry-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+  .entry-content table, .entry-content th, .entry-content td {
+      border: 1px solid #ddd;
+  }
+
+  .entry-content th, .entry-content td {
+      padding: 8px;
+      text-align: left;
+  }
+
+  .entry-content th {
+      background-color: #f2f2f2;
+  }
+
+  .entry-content ul {
+      list-style-type: disc;
+      margin: 10px 0;
+      padding-left: 20px;
+  }
 </style>

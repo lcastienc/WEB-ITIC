@@ -1,58 +1,85 @@
 ---
 interface Props {
-    title: string;
-    body: string;
-    href: string;
-    imageUrl: string; // Nueva propiedad para la URL de la imagen
-    publicationDate: string; // Nueva propiedad para la fecha de publicación
-    author: string; // Nueva propiedad para el autor de la publicación
-    readMoreUrl: string;
+	title: string;
+	body: string;
+	href: string;
+	imageUrl: string;
+	publicationDate: string;
 }
 
-const { href, title, body, imageUrl, publicationDate, author, readMoreUrl } = Astro.props;
+const { href, title, body, imageUrl, publicationDate } = Astro.props;
 ---
 
 <li class="link-card">
-    <a href={href}>
-        <h2>{title}</h2>
-        <span>{publicationDate}</span> <!-- Fecha de publicación -->
-        <p>
-            {body}
-            <a href={readMoreUrl}>
-                Llegeix mes
-            </a>
-        </p>
-        <div class="image-container">
-            <img src={imageUrl} alt="Imagen" /> <!-- URL de la imagen -->
-        </div>
-        <p>{author}</p> <!-- Autor de la publicación -->
-    </a>
+	<a href={href}>
+		<img src={imageUrl} alt={title} class="card-image" />
+		<div class="card-content">
+			<h2>
+				{title}
+				<span>&rarr;</span>
+			</h2>
+			<p>{body}</p>
+			<p class="publication-date">{publicationDate}</p>
+		</div>
+	</a>
 </li>
 
-
 <style>
-    .link-card .content {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .link-card .content img {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 10px; /* Ajusta el margen según necesites */
-    }
-
-    .link-card .content .metadata {
-        font-size: 0.8rem;
-        color: #888;
-    }
-    .image-container {
-        margin-top: 10px; /* Ajusta el margen superior según necesites */
-        text-align: center; /* Centra la imagen */
-    }
-
-    .image-container img {
-        max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
-        height: auto; /* Permite que la imagen conserve su proporción */
-    }
+	.link-card {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		padding: 1px;
+		background-color: #23262d;
+		border-radius: 7px;
+		transition: background-color 0.3s ease, box-shadow 0.3s ease;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		margin-bottom: 1rem;
+	}
+	.link-card > a {
+		width: 100%;
+		text-decoration: none;
+		border-radius: 7px;
+		color: white;
+		background-color: #23262d;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+	}
+	.link-card:hover {
+		background-color: #2f333d;
+		box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+	}
+	.link-card > a:hover {
+		transform: translateY(-2px);
+		opacity: 1;
+	}
+	.card-image {
+		width: 100%;
+		height: 150px;
+		object-fit: cover;
+		border-radius: 7px 7px 0 0;
+	}
+	.card-content {
+		padding: 1rem;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.5rem;
+		transition: color 0.3s ease;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+		color: #d1d1d1;
+	}
+	.publication-date {
+		font-size: 0.8rem;
+		color: #a1a1a1;
+		margin-top: 0.5rem;
+	}
+	.link-card:is(:hover, :focus-within) h2 {
+		color: #30efbc;
+	}
 </style>

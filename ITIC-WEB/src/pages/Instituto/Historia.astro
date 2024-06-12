@@ -1,18 +1,53 @@
----
-
-import Layout from "../../layouts/Layout.astro";---
-
-<Layout title="Historia Instituto">
-    <div class="container">
-        <h1>Historia</h1>
-        <p>
-            Les persones responsables del CEB (Consorci d’Educació de Barcelona), com a servei territorial del Departament d’Educació de Catalunya, dins del pla director d’ordenació de l’oferta educativa de la ciutat de Barcelona aproven la creació de l’Institut TIC de Barcelona (Institut de Tecnologies de la Informació i la Comunicació de Barcelona).
-        </p>
-        <p>
-            Aquest nou centre concentrarà l’oferta educativa de formació professional, de la família d’Informàtica i Comunicacions, de dos instituts de la ciutat de Barcelona: l’Institut Jaume Balmes i l’Institut Joan d’Àustria, que deixaran d’oferir aquestes ofertes educatives en finalitzar el curs acadèmic 2022-2023.
-        </p>
-        <p>
-            Es determina que en aquest nou centre s’ampliarà l’oferta educativa dels dos centres d’origen, amb noves etapes i estudis, com els PFI, que no estaven implantats als instituts indicats.
-        </p>
+<div class="content">
+    <header class="entry-header">
+        <h1 class="entry-title">Història de l'Institut TIC de Barcelona</h1>
+    </header>
+    <div class="entry-content">
+        <h3>Any 2023</h3>
+        <p>Les persones responsables del CEB (Consorci d’Educació de Barcelona), com a servei territorial del Departament d’Educació de Catalunya, dins del pla director d’ordenació de l’oferta educativa de la ciutat de Barcelona aproven la creació de l’Institut TIC de Barcelona (Institut de Tecnologies de la Informació i la Comunicació de Barcelona).</p>
+        <p>Aquest nou centre concentrarà l’oferta educativa de formació professional, de la família d’Informàtica i Comunicacions, de dos instituts de la ciutat de Barcelona: l’Institut Jaume Balmes i l’Institut Joan d’Àustria, que deixaran d’oferir aquestes ofertes educatives en finalitzar el curs acadèmic 2022-2023.</p>
+        <p>Es determina que en aquest nou centre s’ampliarà l’oferta educativa dels dos centres d’origen, amb noves etapes i estudis, com els PFI, que no estaven implantats als instituts indicats.</p>
     </div>
-</Layout>
+</div>
+
+<style>
+  .content {
+      padding: 40px;
+      background-color: #f2f2f2;
+      margin-left: 20px; 
+      margin-top: 20px;
+  }
+
+  .entry-header {
+      margin-bottom: 20px;
+      position: static;
+  }
+
+  .entry-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #008C72;
+  }
+
+  .entry-content {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #333;
+  }
+
+  .entry-content h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: #005f46;
+      margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+      .content {
+          margin-left: 0;
+          margin-top: 0; 
+          padding: 20px; 
+      }
+  }
+</style>

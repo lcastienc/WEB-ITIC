@@ -28,12 +28,10 @@ import youtube from '../../public/assets/carousel-logos/pasados/youtube.svg'
 ---
 
 <div class="carousel">
-
-
     <h2>Empresas con acuerdos pasados</h2>
     <div class="carousel-container past">
+        <button class="prev-btn">&#10094;</button>
         <div class="carousel-slide">
-
             <Image src={pinterest} alt="logo pinterest" />
             <Image src={spotify} alt="logo spotify" />
             <Image src={telegram} alt="logo telegram" />
@@ -45,8 +43,26 @@ import youtube from '../../public/assets/carousel-logos/pasados/youtube.svg'
             <Image src={whatsapp} alt="logo whatsapp" />
             <Image src={youtube} alt="logo youtube" />
         </div>
-        <button class="prev-btn">&#10094;</button>
         <button class="next-btn">&#10095;</button>
+    </div>
+
+    <h2>Empresas con acuerdos actuales</h2>
+    <div class="carousel-container current">
+        <button class="prev-btn">&#10094;</button>
+        <div class="carousel-slide">
+            <Image src={apple} alt="logo apple" />
+            <Image src={atom} alt="logo atom" />
+            <Image src={behance} alt="logo behance" />
+            <Image src={discord} alt="logo discord" />
+            <Image src={facebook} alt="logo facebook" />
+            <Image src={github} alt="logo github" />
+            <Image src={google} alt="logo google" />
+            <Image src={instagram} alt="logo instagram" />
+            <Image src={linkedin} alt="logo linkedin" />
+            <Image src={nestle} alt="logo nestle" />
+            <Image src={photoshop} alt="logo photoshop" />
+        </div>
+        <button class="next-btn">&#10095;"></button>
     </div>
 </div>
 
@@ -56,44 +72,79 @@ import youtube from '../../public/assets/carousel-logos/pasados/youtube.svg'
 
         carouselContainers.forEach(container => {
             const carouselSlide = container.querySelector('.carousel-slide');
-            const logos = carouselSlide.children; // Obtén los elementos hijos en lugar de usar querySelectorAll
-
+            const logos = Array.from(carouselSlide.children);
+            const visibleLogos = 4; // Number of logos visible at one time
+            const slideWidth = logos[0].offsetWidth + 20;
             let counter = 0;
-            const slideWidth = logos[0].offsetWidth + 20; // Suma el ancho y el margen de las imágenes
+            let autoSlide;
+
+            // Duplicate logos for infinite loop
+            logos.forEach(logo => {
+                const clone = logo.cloneNode(true);
+                carouselSlide.appendChild(clone);
+            });
+
+            function startAutoSlide() {
+                autoSlide = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoSlide() {
+                clearInterval(autoSlide);
+            }
 
             function nextSlide() {
-                if (counter >= logos.length - 4) return; // Ajusta el número de imágenes mostradas
                 counter++;
-                carouselSlide.style.transition = 'transform 0.4s ease-in-out'; // Agrega transición suave
-                carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                if (counter >= logos.length) {
+                    carouselSlide.style.transition = 'none';
+                    counter = 0;
+                    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                    setTimeout(() => {
+                        carouselSlide.style.transition = 'transform 0.4s ease-in-out';
+                        counter++;
+                        carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                    }, 0);
+                } else {
+                    carouselSlide.style.transition = 'transform 0.4s ease-in-out';
+                    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                }
             }
 
             function prevSlide() {
-                if (counter <= 0) return;
                 counter--;
-                carouselSlide.style.transition = 'transform 0.4s ease-in-out'; // Agrega transición suave
-                carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                if (counter < 0) {
+                    carouselSlide.style.transition = 'none';
+                    counter = logos.length - 1;
+                    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                    setTimeout(() => {
+                        carouselSlide.style.transition = 'transform 0.4s ease-in-out';
+                        counter--;
+                        carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                    }, 0);
+                } else {
+                    carouselSlide.style.transition = 'transform 0.4s ease-in-out';
+                    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+                }
             }
 
-            container.querySelector('.next-btn').addEventListener('click', nextSlide);
-            container.querySelector('.prev-btn').addEventListener('click', prevSlide);
+            function handleManualSlide() {
+                stopAutoSlide();
+                container.querySelector('.next-btn').removeEventListener('click', handleManualSlide);
+                container.querySelector('.prev-btn').removeEventListener('click', handleManualSlide);
+            }
 
-            // Reinicia el contador cuando llega al final o al principio
-            carouselSlide.addEventListener('transitionend', () => {
-                if (logos[counter].id === 'lastClone') {
-                    carouselSlide.style.transition = 'none';
-                    counter = logos.length - 6; // Ajusta el número de imágenes mostradas
-                    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
-                }
-                if (logos[counter].id === 'firstClone') {
-                    carouselSlide.style.transition = 'none';
-                    counter = logos.length - counter; // Ajusta el número de imágenes mostradas
-                    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
-                }
+            container.querySelector('.next-btn').addEventListener('click', () => {
+                nextSlide();
+                handleManualSlide();
             });
+
+            container.querySelector('.prev-btn').addEventListener('click', () => {
+                prevSlide();
+                handleManualSlide();
+            });
+
+            startAutoSlide();
         });
     });
-
 </script>
 
 <style>
@@ -104,20 +155,48 @@ import youtube from '../../public/assets/carousel-logos/pasados/youtube.svg'
 
     .carousel h2 {
         text-align: center;
+        margin-bottom: 20px;
     }
 
     .carousel-container {
+        position: relative;
         overflow: hidden;
+        margin-bottom: 40px;
     }
 
     .carousel-slide {
         display: flex;
+        transition: transform 0.4s ease-in-out;
     }
 
     .carousel-slide img {
-        width: 100px; /* Ajusta el tamaño de los logos según necesites */
+        width: 100px;
         height: auto;
         margin: 0 10px;
     }
 
-</style>
+    .prev-btn,
+    .next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 2;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    .prev-btn:hover,
+    .next-btn:hover {
+        background-color: rgba(0, 0, 0, 0.

@@ -1,7 +1,91 @@
 ---
+import Layout from "../../layouts/Layout.astro";
+import Sidebar from '../../components/react-components/Sidebar';
+---
 
-import Layout from "../../layouts/Layout.astro";---
 <Layout title="Instituto">
-    <h1>Informació Instituto</h1>
+    <div class="main-container">
+        <Sidebar title="Instituto" links={[
+            { href: "/Instituto/OnSom", text: "On Som" },
+            { href: "/Instituto/Historia", text: "Història" },
+            { href: "/Instituto/Instalaciones", text: "Instalaciones" },
+            { href: "/Instituto/Consejo-Escolar", text: "Consejo Escolar" },
+            { href: "/Instituto/Organigrama", text: "Organigrama" },
+            { href: "/Instituto/Norma-i-funcionamiento", text: "Normas y funcionamientos" },
+            { href: "/Instituto/Calendario-del-curso", text: "Calendario del curso" },
+            { href: "/Instituto/Horarios", text: "Horarios" }
+        ]}/>
+        <div id="contenido" class="content">
+            <!-- El contenido específico de cada sección se cargará aquí -->
+        </div>
+    </div>
 </Layout>
 
+<style>
+  .main-container {
+      display: flex;
+      min-height: 100vh;
+  }
+
+  .content {
+      flex-grow: 1;
+      padding: 40px;
+      background-color: #f2f2f2;
+      margin-left: 20px; 
+      margin-top: 20px; 
+  }
+
+  body {
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e6e6e6; 
+  }
+
+  header {
+      top: 0;
+      position: sticky;
+      z-index: 3;
+      background: white; 
+      width: 100%;
+  }
+
+  footer {
+      position: relative;
+      z-index: 2;
+      background: white; 
+  }
+
+  @media (max-width: 768px) {
+      .content {
+          margin-left: 0;
+          margin-top: 0; 
+      }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var links = document.querySelectorAll('.sidebar a');
+
+      links.forEach(function(link) {
+          link.addEventListener('click', function(e) {
+              e.preventDefault();
+              var url = this.getAttribute('href');
+
+              var xhr = new XMLHttpRequest();
+              xhr.open('GET', url, true);
+              xhr.onreadystatechange = function() {
+                  if (xhr.readyState === XMLHttpRequest.DONE) {
+                      if (xhr.status === 200) {
+                          document.getElementById('contenido').innerHTML = xhr.responseText;
+                      } else {
+                          console.error('Error al cargar el contenido:', xhr.statusText);
+                      }
+                  }
+              };
+              xhr.send();
+          });
+      });
+  });
+</script>

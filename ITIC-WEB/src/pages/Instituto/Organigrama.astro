@@ -1,19 +1,86 @@
----
-import Layout from "../../layouts/Layout.astro";
-import Image from "../../components/Image.astro";
----
-<Layout title="Organigrama">
-    <div class="container">
-        <h1>Organigrama</h1>
-        <p>Los organismos colegiados del centro són:</p>
+<div class="content">
+    <header class="entry-header">
+        <h1 class="entry-title">Organigrama de l'Institut TIC de Barcelona</h1>
+    </header>
+    <div class="entry-content">
+        <h2>Equip Directiu</h2>
         <ul>
-            <li>El consejo escolar del centro</li>
-            <li>El Claustre del professorat, compost per tot el professorat assignat a l’Institut.</li>
+            <li>Directora: Sra. Montserrat Gil</li>
+            <li>Cap d’Estudis: Sr. Joan López</li>
+            <li>Coordinador/a de Cicles Formatius: Sra. Marta Martínez</li>
         </ul>
-
-        <p>
-            Les dependències funcionals, del personal que formem part de l’Institut TIC de Barcelona, es mostren en el següent esquema de dependències (organigrama funcional), on la part central correspon als membres de l’equip directiu:
-        </p>
-        <Image alt="Imagen organigrama del centro" />
+        
+        <h2>Coordinacions</h2>
+        <ul>
+            <li>Coordinador/a de Qualitat i Innovació: Sr. Albert Soler</li>
+            <li>Coordinador/a de Pràctiques i Borsa de Treball: Sra. Laura Gómez</li>
+            <li>Coordinador/a de Projectes Europeus: Sr. David Puig</li>
+        </ul>
+        
+        <h2>Departaments</h2>
+        <ul>
+            <li>Cap del Departament d’Informàtica: Sr. Pere Costa</li>
+            <li>Cap del Departament de Matemàtiques: Sra. Isabel Rovira</li>
+            <li>Cap del Departament de Llengües: Sra. Teresa Ferrer</li>
+        </ul>
+        
+        <h2>Altres Responsabilitats</h2>
+        <ul>
+            <li>Responsable de Prevenció de Riscos: Sr. Carlos Ruiz</li>
+            <li>Responsable de Convivència i Mediació: Sra. Anna Torres</li>
+            <li>Responsable de Comunicació i Imatge: Sra. Eva Martínez</li>
+        </ul>
     </div>
-</Layout>
+</div>
+
+<style>
+  .content {
+      padding: 40px;
+      background-color: #f2f2f2;
+      margin-left: 20px; 
+      margin-top: 20px; 
+  }
+
+  .entry-header {
+      margin-bottom: 20px;
+      position: static;
+  }
+
+  .entry-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #008C72;
+  }
+
+  .entry-content {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #333; 
+  }
+
+  .entry-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: #006F5C; 
+      margin-top: 20px;
+      margin-bottom: 10px;
+  }
+
+  .entry-content ul {
+      padding-left: 20px;
+      list-style-type: disc;
+  }
+
+  .entry-content li {
+      margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+      .content {
+          margin-left: 0;
+          margin-top: 0; 
+          padding: 20px; 
+      }
+  }
+</style>

@@ -15,7 +15,7 @@
       <div class="form-border"></div>
       <a href="#"><legend id="forgot-pass">Forgot password?</legend></a>
       <input id="submit-btn" type="submit" name="submit" value="LOGIN" />
-      <a href="/register" id="signup">Don't have account yet?</a>
+      <a href="/Register" id="signup">Don't have account yet?</a>
     </form>
   </div>
 </div>
@@ -71,7 +71,7 @@
     const token = localStorage.getItem('token');
     if (!token) {
       console.error('Token not found');
-      window.location.href = '/login';
+      window.location.href = '/Login';
       return;
     }
 
@@ -83,7 +83,7 @@
     const response = await fetch(url, options);
     if (response.status === 401) {
       console.error('Unauthorized access');
-      window.location.href = '/login';
+      window.location.href = '/Login';
     }
     return response;
   }
