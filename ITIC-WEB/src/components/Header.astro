@@ -36,20 +36,10 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
         </div>
         <div id="header-opciones">
             <div class="dropdown">
-                <a href="/Instituto">Instituto</a>
-                <div class="dropdown-content">
-                    <a href="/Instituto/OnSom">On Som</a>
-                    <a href="/Instituto/Historia">Història</a>
-                    <a href="/Instituto/Instalaciones">Instalaciones</a>
-                    <a href="/Instituto/Consejo-Escolar">Consejo Escolar</a>
-                    <a href="/Instituto/Organigrama">Organigrama</a>
-                    <a href="/Instituto/Norma-i-funcionamiento">Normas y funcionamientos</a>
-                    <a href="/Instituto/Calendario-del-curso">Calendario del curso</a>
-                    <a href="/Instituto/Horarios">Horarios</a>
-                </div>
+                <a href="/Instituto" class="hover-blue">Instituto</a>
             </div>
             <div class="dropdown">
-                <a href="/Estudios">Estudios</a>
+                <a href="/Estudios" class="hover-blue">Estudios</a>
                 <div class="dropdown-content">
                     <a href="/Estudios/?clave=ce">Intel·ligència Artificial i Big Data</a>
                     <a href="/Estudios/?clave=pfi">Auxiliar de muntatge i manteniment d’equips informàtics (PFI)</a>
@@ -60,13 +50,9 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
                 </div>
             </div>
             <div class="dropdown">
-                <a href="/Erasmus">Erasmus+</a>
-                <div class="dropdown-content">
-                    <a href="/Erasmus/Proyectos">Proyectos</a>
-                    <a href="/Erasmus/Becas">Becas</a>
-                </div>
+                <a href="/Erasmus" class="hover-blue">Erasmus+</a>
             </div>
-            <a href="/Contacto">Contacto</a>
+            <a href="/Contacto" class="hover-blue">Contacto</a>
         </div>
         <div id="extensiones-header">
             <p><a href="https://app.dinantia.com/login">Dinantia</a></p>
@@ -77,45 +63,61 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
 
 <script>
   document.addEventListener("DOMContentLoaded", async function() {
-    const token = localStorage.getItem('token');
-    const logoutLink = document.getElementById('logout');
-    const loginLink = document.getElementById('login');
-    const profileDropdown = document.getElementById('profile-dropdown');
-    const profileIcon = document.getElementById('profile-icon');
+  const token = localStorage.getItem('token');
+  const logoutLink = document.getElementById('logout');
+  const loginLink = document.getElementById('login');
+  const profileDropdown = document.getElementById('profile-dropdown');
+  const profileIcon = document.getElementById('profile-icon');
 
-    if (token) {
-      loginLink.style.display = 'none';
-      profileDropdown.style.border = '3px solid green';  // Borde más gordo
-      
-      try {
-        const response = await fetch('http://localhost:3000/user', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.fotoPerfil) {
-            profileIcon.src = `http://localhost:3000${data.fotoPerfil}`;
-          }
-        } else {
-          console.error('Error al obtener datos del usuario');
+  if (token) {
+    loginLink.style.display = 'none';
+    
+    try {
+      const response = await fetch('http://localhost:3000/user', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    } else {
-      logoutLink.style.display = 'none';
-    }
+      });
 
-    logoutLink.addEventListener('click', () => {
-      localStorage.removeItem('token');
-      window.location.href = '/Login';
-    });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("User data:", data); // Agrega esta línea
+        if (data.fotoPerfil) {
+          profileIcon.src = `http://localhost:3000${data.fotoPerfil}`;
+        }
+        // Cambia el color del borde del perfil según el rol del usuario
+        switch (data.rol) {  // Asegúrate de que el campo es 'rol'
+          case 'alumno':
+            profileDropdown.style.border = '3px solid green';
+            break;
+          case 'profesor':
+            profileDropdown.style.border = '3px solid blue';
+            break;
+          case 'admin':
+            profileDropdown.style.border = '3px solid purple';
+            break;
+          default:
+            profileDropdown.style.border = '3px solid grey';
+        }
+        console.log("Border color set for role:", data.rol); 
+      } else {
+        console.error('Error al obtener datos del usuario');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  } else {
+    logoutLink.style.display = 'none';
+  }
+
+  logoutLink.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    window.location.href = '/Login';
   });
+});
+
 </script>
 
 <style>
@@ -129,6 +131,11 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
     color: black;
     font-size: 18px;
     font-weight: bold;
+}
+
+#header-opciones div a:hover,
+#header-opciones a:hover {
+    color: blue; 
 }
 
 #container-header {
@@ -290,6 +297,8 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    left: -90px;
+    right: 0;
 }
 
 .dropdown-content a {
@@ -304,7 +313,8 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
 }
 
 .dropdown:hover .dropdown-content,
-.dropdown:focus-within .dropdown-content {
+.dropdown:focus-within .dropdown-content,
+.dropdown.active .dropdown-content {
     display: block;
 }
 
@@ -324,7 +334,8 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
 }
 
 #header-opciones .dropdown:hover .dropdown-content,
-#header-opciones .dropdown:focus-within .dropdown-content {
+#header-opciones .dropdown:focus-within .dropdown-content,
+#header-opciones .dropdown.active .dropdown-content {
     display: block;
 }
 
@@ -338,5 +349,4 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
 #header-opciones .dropdown-content a:hover {
     background-color: #f1f1f1;
 }
-
 </style>
