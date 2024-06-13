@@ -7,6 +7,8 @@ const { check, validationResult } = require('express-validator');
 const multer = require('multer');
 const path = require('path');
 const createDbConnection = require('./db'); 
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 const port = 3000;
@@ -27,6 +29,27 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+// Configuración de Swagger
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'API de ITIC BCN',
+      version: '1.0.0',
+      description: 'API para la gestión de usuarios en ITIC BCN',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+      },
+    ],
+  },
+  apis: ['./app.js'], // archivos donde están definidas las rutas
+};
+
+const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // Middleware para verificar el token y el rol de administrador
 const authenticateToken = (req, res, next) => {
@@ -53,7 +76,47 @@ const checkAdminRole = (req, res, next) => {
   next();
 };
 
-// Ruta de registro para alumnos 
+// Ruta de registro para alumnos
+/**
+ * @swagger
+ * /register/alumno:
+ *   post:
+ *     summary: Registra un nuevo alumno
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nombre
+ *               - apellidos
+ *               - email
+ *               - password
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *               apellidos:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Alumno registrado con éxito
+ *       400:
+ *         description: Error de validación
+ *       401:
+ *         description: Token no proporcionado
+ *       403:
+ *         description: Token no válido o acceso denegado
+ *       500:
+ *         description: Error al registrar alumno
+ */
 app.post('/register/alumno', [
   authenticateToken,
   checkAdminRole,
@@ -85,7 +148,47 @@ app.post('/register/alumno', [
   }
 });
 
-// Ruta de registro para profesores 
+// Ruta de registro para profesores
+/**
+ * @swagger
+ * /register/profesor:
+ *   post:
+ *     summary: Registra un nuevo profesor
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nombre
+ *               - apellidos
+ *               - email
+ *               - password
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *               apellidos:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Profesor registrado con éxito
+ *       400:
+ *         description: Error de validación
+ *       401:
+ *         description: Token no proporcionado
+ *       403:
+ *         description: Token no válido o acceso denegado
+ *       500:
+ *         description: Error al registrar profesor
+ */
 app.post('/register/profesor', [
   authenticateToken,
   checkAdminRole,
@@ -117,7 +220,47 @@ app.post('/register/profesor', [
   }
 });
 
-// Ruta de registro para admins 
+// Ruta de registro para admins
+/**
+ * @swagger
+ * /register/admin:
+ *   post:
+ *     summary: Registra un nuevo administrador
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nombre
+ *               - apellidos
+ *               - email
+ *               - password
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *               apellidos:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Administrador registrado con éxito
+ *       400:
+ *         description: Error de validación
+ *       401:
+ *         description: Token no proporcionado
+ *       403:
+ *         description: Token no válido o acceso denegado
+ *       500:
+ *         description: Error al registrar administrador
+ */
 app.post('/register/admin', [
   authenticateToken,
   checkAdminRole,
@@ -150,6 +293,36 @@ app.post('/register/admin', [
 });
 
 // Ruta de login
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Inicia sesión en la aplicación
+ *     tags: [Autenticación]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Inicio de sesión exitoso
+ *       400:
+ *         description: Error de validación
+ *       401:
+ *         description: Usuario no encontrado o contraseña incorrecta
+ *       500:
+ *         description: Error al iniciar sesión
+ */
 app.post('/login', [
   check('email').isEmail().withMessage('Email no válido'),
   check('password').notEmpty().withMessage('Contraseña es obligatoria')
@@ -191,14 +364,65 @@ app.post('/login', [
 });
 
 // Ruta para verificar el token
+/**
+ * @swagger
+ * /verifyToken:
+ *   post:
+ *     summary: Verifica la validez del token
+ *     tags: [Autenticación]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Token válido
+ *       401:
+ *         description: Token no proporcionado
+ *       403:
+ *         description: Token no válido
+ */
 app.post('/verifyToken', authenticateToken, (req, res) => {
   const { userId, role } = req.user;
   res.status(200).json({ valid: true, role: role });
 });
-
 // Ruta para obtener los datos del usuario
+/**
+ * @swagger
+ * /user:
+ *   get:
+ *     summary: Obtiene los datos del usuario autenticado
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Datos del usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 nombre:
+ *                   type: string
+ *                 apellidos:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 fotoPerfil:
+ *                   type: string
+ *                 rol:
+ *                   type: string
+ *       401:
+ *         description: Token no proporcionado
+ *       403:
+ *         description: Token no válido
+ *       404:
+ *         description: Usuario no encontrado
+ *       500:
+ *         description: Error al obtener datos del usuario
+ */
 app.get('/user', authenticateToken, async (req, res) => {
   const { userId } = req.user;
+
   try {
     const connection = await createDbConnection();
     let query;
@@ -229,6 +453,40 @@ app.get('/user', authenticateToken, async (req, res) => {
 
 
 // Ruta para actualizar el perfil del usuario
+/**
+ * @swagger
+ * /user:
+ *   put:
+ *     summary: Actualiza el perfil del usuario autenticado
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *               apellidos:
+ *                 type: string
+ *               fotoPerfil:
+ *                 type: string
+ *                 format: binary
+ *               removeFotoPerfil:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Perfil actualizado con éxito
+ *       401:
+ *         description: Token no proporcionado
+ *       403:
+ *         description: Token no válido
+ *       500:
+ *         description: Error al actualizar datos del usuario
+ */
 app.put('/user', [authenticateToken, upload.single('fotoPerfil')], async (req, res) => {
   const { userId } = req.user;
   const { nombre, apellidos, removeFotoPerfil } = req.body;
@@ -285,6 +543,22 @@ app.put('/user', [authenticateToken, upload.single('fotoPerfil')], async (req, r
 });
 
 // Ruta protegida de ejemplo
+/**
+ * @swagger
+ * /protected:
+ *   get:
+ *     summary: Ruta protegida de ejemplo
+ *     tags: [Ejemplos]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Acceso permitido a la ruta protegida
+ *       401:
+ *         description: Token no proporcionado
+ *       403:
+ *         description: Token no válido
+ */
 app.get('/protected', authenticateToken, (req, res) => {
   res.status(200).json({ message: 'Acceso permitido a la ruta protegida', user: req.user });
 });
@@ -292,3 +566,13 @@ app.get('/protected', authenticateToken, (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
