@@ -11,11 +11,15 @@ import Layout from "../layouts/Layout.astro";
       <form method="post" class="profile-form" id="profileForm" enctype="multipart/form-data">
         <div class="profile-field">
           <label for="user-nombre">Nombre</label>
-          <input id="user-nombre" type="text" name="nombre" autocomplete="on" required />
+          <input id="user-nombre" type="text" name="nombre" autocomplete="on" required readonly />
         </div>
         <div class="profile-field">
           <label for="user-apellidos">Apellidos</label>
-          <input id="user-apellidos" type="text" name="apellidos" autocomplete="on" required />
+          <input id="user-apellidos" type="text" name="apellidos" autocomplete="on" required readonly />
+        </div>
+        <div class="profile-field">
+          <label for="user-email">Email</label>
+          <input id="user-email" type="email" name="email" autocomplete="on" required readonly />
         </div>
         <div class="profile-field">
           <label for="user-fotoPerfil">Foto de Perfil</label>
@@ -25,6 +29,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="profile-actions">
           <button type="submit">Actualizar</button>
           <button type="button" id="remove-fotoPerfil">Eliminar Foto de Perfil</button>
+          <button type="button" id="informar-error">Informar Error en Datos</button>
           <button type="button" id="cancelar-btn" class="cancel-button">Cancelar</button>
         </div>
       </form>
@@ -52,8 +57,24 @@ import Layout from "../layouts/Layout.astro";
 
       if (response.ok) {
         const data = await response.json();
-        document.getElementById('user-nombre').value = data.nombre;
-        document.getElementById('user-apellidos').value = data.apellidos;
+
+        if (data.nombre) {
+          document.getElementById('user-nombre').value = data.nombre;
+        }
+        if (data.apellidos) {
+          document.getElementById('user-apellidos').value = data.apellidos;
+        }
+        if (data.email) {
+          document.getElementById('user-email').value = data.email;
+        }
+
+        // Desactivar campos para alumnos y profesores
+        if (data.role === 'admin') {
+          document.getElementById('user-nombre').removeAttribute('readonly');
+          document.getElementById('user-apellidos').removeAttribute('readonly');
+          document.getElementById('user-email').removeAttribute('readonly');
+        }
+
         if (data.fotoPerfil) {
           const img = document.createElement('img');
           img.src = `http://localhost:3000${data.fotoPerfil}`;
@@ -61,6 +82,7 @@ import Layout from "../layouts/Layout.astro";
           img.width = 100;
           img.height = 100;
           img.style.borderRadius = '50%';
+          img.style.border = `3px solid ${data.role === 'admin' ? 'purple' : data.role === 'profesor' ? 'blue' : 'green'}`;
           document.getElementById('profile-img-container').appendChild(img);
         }
       } else {
@@ -92,8 +114,6 @@ import Layout from "../layouts/Layout.astro";
     formData.append('apellidos', apellidos);
     if (fotoPerfil) {
       formData.append('fotoPerfil', fotoPerfil);
-    } else {
-      formData.append('fotoPerfil', "");  
     }
 
     try {
@@ -154,7 +174,11 @@ import Layout from "../layouts/Layout.astro";
   });
 
   document.getElementById('cancelar-btn').addEventListener('click', () => {
-    window.location.href = 'http://localhost:4321/';
+    window.location.href = '/';
+  });
+
+  document.getElementById('informar-error').addEventListener('click', () => {
+    alert('Se ha informado de un error en los datos a los administradores.');
   });
 </script>
 
@@ -210,7 +234,8 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .profile-field input[type="text"],
-  .profile-field input[type="file"] {
+  .profile-field input[type="file"],
+  .profile-field input[type="email"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -232,6 +257,7 @@ import Layout from "../layouts/Layout.astro";
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    flex-wrap: wrap;
   }
 
   .profile-actions button {
@@ -242,6 +268,7 @@ import Layout from "../layouts/Layout.astro";
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    margin-bottom: 10px; 
   }
 
   .profile-actions button:hover {

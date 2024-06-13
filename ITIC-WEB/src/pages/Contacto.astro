@@ -2,9 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
+
 <Layout title="Contacto">
-  <main class="contact-main">
-    <!-- Información de contacto -->
     <section class="contact-info">
       <h2>Información de contacto</h2>
       <p><strong>Teléfono:</strong> 935128822</p>
@@ -22,7 +21,11 @@ import Layout from "../layouts/Layout.astro";
   </main>
 </Layout>
 
-<script src="../../public//js/verifyToken.js"></script>
+<!-- <script src="../../public//js/verifyToken.js"></script> -->
+<script type="module">
+  import verifyToken from '../../public/js/verifyToken.js';
+  verifyToken(['alumno', 'admin']);
+</script>
 
 <style>
   .contact-main {
