@@ -66,26 +66,32 @@ import Sidebar from '../../components/react-components/Sidebar';
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        function loadContent(url) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        document.getElementById('contenido').innerHTML = xhr.responseText;
+                    } else {
+                        console.error('Error al cargar el contenido:', xhr.statusText);
+                    }
+                }
+            };
+            xhr.send();
+        }
+
         var links = document.querySelectorAll('.sidebar a');
-  
+
         links.forEach(function(link) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 var url = this.getAttribute('href');
-  
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', url, true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            document.getElementById('contenido').innerHTML = xhr.responseText;
-                        } else {
-                            console.error('Error al cargar el contenido:', xhr.statusText);
-                        }
-                    }
-                };
-                xhr.send();
+                loadContent(url);
             });
         });
+
+        // Cargar automáticamente "On Som" al entrar en la página
+        loadContent('/Instituto/OnSom');
     });
-  </script>
+</script>
