@@ -65,6 +65,22 @@ const sidebarLinks = [
 <script>
   document.addEventListener("DOMContentLoaded", function() {
       var links = document.querySelectorAll('.sidebar a');
+      var contenido = document.getElementById('contenido');
+      var initialUrl = '/Erasmus/Erasmus-Policy-Statement';
+
+      // Cargar contenido inicial
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', initialUrl, true);
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                  contenido.innerHTML = xhr.responseText;
+              } else {
+                  console.error('Error al cargar el contenido:', xhr.statusText);
+              }
+          }
+      };
+      xhr.send();
 
       links.forEach(function(link) {
           link.addEventListener('click', function(e) {
@@ -76,7 +92,7 @@ const sidebarLinks = [
               xhr.onreadystatechange = function() {
                   if (xhr.readyState === XMLHttpRequest.DONE) {
                       if (xhr.status === 200) {
-                          document.getElementById('contenido').innerHTML = xhr.responseText;
+                          contenido.innerHTML = xhr.responseText;
                       } else {
                           console.error('Error al cargar el contenido:', xhr.statusText);
                       }

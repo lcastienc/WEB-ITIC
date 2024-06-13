@@ -54,8 +54,12 @@
         if (verifyResponse.ok) {
           const verifyData = await verifyResponse.json();
           console.log('Verify token response:', verifyData);
+
+          // Redirigir a la página principal
+          window.location.href = 'http://localhost:4321/';
         } else {
           console.error('Failed to verify token');
+          alert('Failed to verify token');
         }
       } else {
         const data = await response.json();

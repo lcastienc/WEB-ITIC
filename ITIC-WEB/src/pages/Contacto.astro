@@ -2,8 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-
 <Layout title="Contacto">
+  <div class="contact-main">
     <section class="contact-info">
       <h2>Información de contacto</h2>
       <p><strong>Teléfono:</strong> 935128822</p>
@@ -12,20 +12,13 @@ import Layout from "../layouts/Layout.astro";
       <p><strong>Planta:</strong> Primera planta</p>
     </section>
 
-    <!-- Mapa y cómo llegar -->
     <section class="map-section">
       <h2>Mapa y cómo llegar</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.6981009713695!2d2.1918263766154693!3d41.40236227129805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a34a248e331f%3A0xecad209a537d18aa!2sInstituto%20de%20Tecnolog%C3%ADas%20de%20la%20Informaci%C3%B3n%20y%20la%20Comunicaci%C3%B3n%20de%20Barcelona!5e0!3m2!1ses-419!2ses!4v1712762134283!5m2!1ses-419!2ses" width="600" height="450" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.6981009713695!2d2.1918263766154693!3d41.40236227129805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a34a248e331f%3A0xecad209a537d18aa!2sInstituto%20de%20Tecnolog%C3%ADas%20de%20la%20Informaci%C3%B3n%20y%20la%20Comunicaci%C3%B3n%20de%20Barcelona!5e0!3m2!1ses-419!2ses!4v1712762134283!5m2!1ses-419!2ses" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
       <p>Estamos ubicados en C/ Sancho de Ávila, 131, 08018 Barcelona.</p>
     </section>
-  </main>
+  </div>
 </Layout>
-
-<!-- <script src="../../public//js/verifyToken.js"></script> -->
-<script type="module">
-  import verifyToken from '../../public/js/verifyToken.js';
-  verifyToken(['alumno', 'admin']);
-</script>
 
 <style>
   .contact-main {
@@ -40,6 +33,7 @@ import Layout from "../layouts/Layout.astro";
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 500px; 
   }
 
   .contact-info h2, .map-section h2 {
@@ -55,6 +49,7 @@ import Layout from "../layouts/Layout.astro";
 
   .map-section iframe {
     width: 100%;
+    height: 80%; 
     border: none;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -67,10 +62,7 @@ import Layout from "../layouts/Layout.astro";
 
     .contact-info, .map-section {
       width: 100%;
-    }
-
-    .contact-info {
-      margin-bottom: 20px;
+      height: auto;
     }
   }
 </style>
