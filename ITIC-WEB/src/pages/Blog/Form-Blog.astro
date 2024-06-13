@@ -1,0 +1,311 @@
+---
+
+import Layout from "../../layouts/Layout.astro";---
+
+<Layout title="Form-Blog">
+    <div class="container">
+        <form id="blogForm" class="space-y-6" enctype="multipart/form-data">
+            <div class="space-y-2">
+                <label for="title" class="label">Title</label>
+                <input id="title" type="text" class="input" placeholder="Enter the blog post title" required>
+            </div>
+            <div class="space-y-2">
+                <label for="main-content" class="label">Main Content</label>
+                <div id="main-content" class="editable" contenteditable="true" placeholder="Enter the main content of the blog post"></div>
+                <button type="button" class="button" onclick="handleAddLink('main-content')">Add Link</button>
+                <button type="button" class="button" onclick="handleAddListItem('main-content')">Add List Item</button>
+                <button type="button" class="button" onclick="handleAddSubtitle()">Add Subtitle</button> <!-- Botón para añadir subtítulo -->
+            </div>
+            <div class="space-y-2">
+                <label for="featured-images" class="label">Featured Images</label>
+                <input id="featured-images" type="file" class="input" multiple >
+            </div>
+            <div class="space-y-2">
+                <label for="author" class="label">Author</label>
+                <input id="author" type="text" class="input" placeholder="Enter the author's name" required>
+            </div>
+            <div class="flex justify-end">
+                <button type="submit" class="button">Save Blog Post</button>
+            </div>
+        </form>
+        <div id="blogPreview" class="mt-10 space-y-4">
+            <div class="space-y-2">
+                <h1 id="previewTitle" class="text-3xl font-bold"></h1>
+                <p id="previewMetadata" class="text-gray-500"></p>
+            </div>
+            <div id="previewContent" class="prose"></div>
+            <div id="previewImages" class="images-container"></div>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('blogForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const mainContent = document.getElementById('main-content').innerHTML;
+            const featuredImages = document.getElementById('featured-images').files;
+            const createdAt = new Date();
+            const author = document.getElementById('author').value;
+
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('main_content', mainContent);
+            formData.append('created_at', createdAt); // Usar 'created_at' en lugar de 'createdAt'
+            formData.append('author', author);
+
+            if (featuredImages.length > 0) {
+                for (let i = 0; i < featuredImages.length; i++) {
+                    formData.append('featured_images', featuredImages[i]);
+                }
+            }
+
+            const url = 'http://localhost:8000/posts/add_post/';
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Aquí puedes manejar la respuesta, como redirigir al usuario a la página del post creado o mostrar un mensaje de éxito.
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Aquí puedes manejar los errores, como mostrar un mensaje de error al usuario.
+                });
+
+
+            document.getElementById('previewTitle').innerText = title;
+            document.getElementById('previewMetadata').innerText = `Published on ${createdAt.toLocaleDateString()} by ${author}`;
+            document.getElementById('previewContent').innerHTML = mainContent;
+
+            const previewImagesContainer = document.getElementById('previewImages');
+            previewImagesContainer.innerHTML = ''; // Clear previous images
+
+            if (featuredImages.length > 0) {
+                Array.from(featuredImages).forEach(image => {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = e.target.result;
+                        imgElement.style.width = '100%'; // Establecer el ancho al 100%
+                        imgElement.style.maxHeight = '450px'; // Establecer la altura máxima
+                        imgElement.style.objectFit = 'cover'; // Ajustar la imagen manteniendo la relación de aspecto
+                        imgElement.style.borderRadius = '4px'; // Añadir borde redondeado
+                        imgElement.style.marginTop = '10px'; // Añadir margen superior
+                        previewImagesContainer.appendChild(imgElement);
+                    };
+                    reader.readAsDataURL(image);
+                });
+            }
+        });
+
+        window.handleAddSubtitle = function () {
+            const editableDiv = document.getElementById('main-content');
+            if (!editableDiv) return;
+
+            const subtitleText = prompt('Enter the subtitle:');
+            if (subtitleText) {
+                const subtitleElement = document.createElement('h2');
+                subtitleElement.innerText = subtitleText;
+                subtitleElement.classList.add('text-3xl', 'font-bold'); // Agrega las clases de estilo
+                insertNodeAtCursor(editableDiv, subtitleElement);
+            }
+        };
+
+        window.handleAddLink = function (divId, divElement) {
+            const editableDiv = divElement || document.getElementById(divId);
+            if (!editableDiv) return;
+
+            const linkUrl = prompt('Enter the URL:');
+            const linkText = prompt('Enter the link text:');
+
+            if (linkUrl && linkText) {
+                const linkHTML = `<a href="${linkUrl}" target="_blank">${linkText}</a>`;
+                insertHTMLAtCursor(editableDiv, linkHTML);
+            }
+        };
+
+        window.handleAddListItem = function (divId, divElement) {
+            const editableDiv = divElement || document.getElementById(divId);
+            if (!editableDiv) return;
+
+            const listItemText = prompt('Enter the list item text:');
+
+            if (listItemText) {
+                const listItemHTML = `<li>${listItemText}</li>`;
+                const currentContent = editableDiv.innerHTML;
+                if (currentContent.includes('<ul>')) {
+                    insertHTMLAtCursor(editableDiv, listItemHTML);
+                } else {
+                    insertHTMLAtCursor(editableDiv, `<ul>${listItemHTML}</ul>`);
+                }
+            }
+        };
+
+        function insertHTMLAtCursor(editableDiv, html) {
+            editableDiv.focus();
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+
+            const el = document.createElement("div");
+            el.innerHTML = html;
+            const frag = document.createDocumentFragment();
+            let node, lastNode;
+            while ((node = el.firstChild)) {
+                lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+
+            if (lastNode) {
+                range.setStartAfter(lastNode);
+                range.setEndAfter(lastNode);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        }
+
+        function insertNodeAtCursor(editableDiv, node) {
+            const selection = window.getSelection();
+            if (!selection.rangeCount) return false;
+
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(node);
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter' && event.target.isContentEditable) {
+                event.preventDefault();
+                document.execCommand('insertHTML', false, '<br><br>');
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+    });
+
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9fafb;
+        color: #333;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .space-y-2 {
+        margin-bottom: 16px;
+    }
+
+    .label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .input,
+    .textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .textarea {
+        min-height: 100px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+    .mt-10 {
+        margin-top: 40px;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .prose {
+        margin-top: 16px;
+    }
+
+    .images-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Espacio entre imágenes */
+    }
+
+    .images-container img {
+        width: 100%;
+        max-height: 450px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .editable {
+        min-height: 100px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .subContent {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .editable[placeholder]:empty:before {
+        content: attr(placeholder);
+        color: #aaa;
+    }
+    /* Estilos para los títulos */
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Tamaño para h1 */
+    }
+
+    h2 {
+        font-size: 2rem; /* Tamaño para h2 */
+        font-weight: bold;
+    }
+
+    h3 {
+        font-size: 1.75rem; /* Tamaño para h3 */
+    }
+
+</style>
