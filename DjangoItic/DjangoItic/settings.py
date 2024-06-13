@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'posts',
     'rest_framework',
     'corsheaders',
+    'drf_yasg',
 
 ]
 
