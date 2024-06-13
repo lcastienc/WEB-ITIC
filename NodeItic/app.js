@@ -142,10 +142,11 @@ app.post('/register', [
   check('nombre').notEmpty().withMessage('Nombre es obligatorio'),
   check('apellidos').notEmpty().withMessage('Apellidos son obligatorios'),
   check('email').isEmail().withMessage('Email no válido'),
-  check('password').isLength({ min: 6 }).withMessage('La contraseña debe tener al menos 6 caracteres')
+  check('password').isLength({ min: 3 }).withMessage('La contraseña debe tener al menos 6 caracteres')
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log('Validation errors:', errors.array());
     return res.status(400).json({ errors: errors.array() });
   }
 
@@ -155,8 +156,8 @@ app.post('/register', [
     const connection = await createDbConnection();
     const hashedPassword = await bcrypt.hash(password, 10);
     const [result] = await connection.execute(
-      'INSERT INTO usuarios (nombre, apellidos, email, password) VALUES (?, ?, ?, ?)',
-      [nombre, apellidos, email, hashedPassword]
+      'INSERT INTO usuarios (nombre, apellidos, email, password, fotoPerfil) VALUES (?, ?, ?, ?, ?)',
+      [nombre, apellidos, email, hashedPassword, null]  // Aquí se establece fotoPerfil como null
     );
     connection.end(); // Cerrar la conexión a la base de datos
     res.status(201).json({ message: 'Usuario registrado con éxito' });
@@ -165,6 +166,7 @@ app.post('/register', [
     res.status(500).json({ error: 'Error al registrar usuario' });
   }
 });
+
 
 // Ruta de inicio de sesión
 app.post('/login', [
