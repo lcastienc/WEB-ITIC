@@ -59,14 +59,14 @@ import Sidebar from '../../components/react-components/Sidebar';
   @media (max-width: 768px) {
       .content {
           margin-left: 0;
-          margin-top: 0; 
+          margin-top: 0; /* Eliminar el margen superior en pantallas pequeñas */
       }
   }
 </style>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-      var links = document.querySelectorAll('.sidebar a');
+      var links = document.querySelectorAll('.sidebar a, #header-opciones a');
 
       links.forEach(function(link) {
           link.addEventListener('click', function(e) {
@@ -78,7 +78,18 @@ import Sidebar from '../../components/react-components/Sidebar';
               xhr.onreadystatechange = function() {
                   if (xhr.readyState === XMLHttpRequest.DONE) {
                       if (xhr.status === 200) {
-                          document.getElementById('contenido').innerHTML = xhr.responseText;
+                          var tempDiv = document.createElement('div');
+                          tempDiv.innerHTML = xhr.responseText;
+
+                          var newContent = tempDiv.querySelector('.content');
+                          var newStyles = tempDiv.querySelector('style');
+                          
+                          document.getElementById('contenido').innerHTML = newContent.innerHTML;
+                          
+                          // Aplicar los nuevos estilos
+                          if (newStyles) {
+                              applyStyles(newStyles);
+                          }
                       } else {
                           console.error('Error al cargar el contenido:', xhr.statusText);
                       }
@@ -87,5 +98,13 @@ import Sidebar from '../../components/react-components/Sidebar';
               xhr.send();
           });
       });
+
+      function applyStyles(styles) {
+          // Añadir los estilos al <head> para que se apliquen globalmente
+          var head = document.head;
+          var styleTag = document.createElement('style');
+          styleTag.innerHTML = styles.innerHTML;
+          head.appendChild(styleTag);
+      }
   });
 </script>

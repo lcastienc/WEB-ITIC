@@ -75,7 +75,11 @@
           window.location.href = '/Login';
         } else {
           const data = await response.json();
-          alert(`Registration failed: ${data.error}`);
+          if (data.errors) {
+            alert(`Registration failed: ${data.errors.map(error => error.msg).join(', ')}`);
+          } else {
+            alert(`Registration failed: ${data.error}`);
+          }
         }
       } catch (error) {
         console.error('Error:', error);
@@ -83,6 +87,7 @@
       }
     });
   </script>
+  
   
   <style>
     a {

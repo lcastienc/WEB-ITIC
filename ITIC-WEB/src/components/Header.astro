@@ -35,9 +35,37 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
             </a>
         </div>
         <div id="header-opciones">
-            <a href="/Instituto">Instituto</a>
-            <a href="/Estudios">Estudios</a>
-            <a href="/Erasmus">Erasmus+</a>
+            <div class="dropdown">
+                <a href="/Instituto">Instituto</a>
+                <div class="dropdown-content">
+                    <a href="/Instituto/OnSom">On Som</a>
+                    <a href="/Instituto/Historia">Història</a>
+                    <a href="/Instituto/Instalaciones">Instalaciones</a>
+                    <a href="/Instituto/Consejo-Escolar">Consejo Escolar</a>
+                    <a href="/Instituto/Organigrama">Organigrama</a>
+                    <a href="/Instituto/Norma-i-funcionamiento">Normas y funcionamientos</a>
+                    <a href="/Instituto/Calendario-del-curso">Calendario del curso</a>
+                    <a href="/Instituto/Horarios">Horarios</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="/Estudios">Estudios</a>
+                <div class="dropdown-content">
+                    <a href="/Estudios/?clave=ce">Intel·ligència Artificial i Big Data</a>
+                    <a href="/Estudios/?clave=pfi">Auxiliar de muntatge i manteniment d’equips informàtics (PFI)</a>
+                    <a href="/Estudios/?clave=cfgm-smx">CFGM Sistemes Microinformàtics i Xarxes (SMX)</a>
+                    <a href="/Estudios/?clave=cfgs-dam">CFGS Desenvolupament d’Aplicacions Multiplataforma (DAM)</a>
+                    <a href="/Estudios/?clave=cfgs-daw">CFGS Desenvolupament d’Aplicacions Web (DAW)</a>
+                    <a href="/Estudios/?clave=cfgs-asix">CFGS Administració de Sistemes Informàtics en Xarxa (ASIX)</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="/Erasmus">Erasmus+</a>
+                <div class="dropdown-content">
+                    <a href="/Erasmus/Proyectos">Proyectos</a>
+                    <a href="/Erasmus/Becas">Becas</a>
+                </div>
+            </div>
             <a href="/Contacto">Contacto</a>
         </div>
         <div id="extensiones-header">
@@ -91,185 +119,224 @@ import LogoITIC from "../../public/assets/ITIC-LOGOs/logo horitzontal Institut T
 </script>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
+* {
+    margin: 0;
+    padding: 0;
+}
 
-    #header-opciones div a {
-        text-decoration: none;
-        color: black;
-        font-size: 18px;
-        font-weight: bold;
-    }
+#header-opciones div a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
 
+#container-header {
+    display: flex;
+    width: 100%;
+    background-color: #f2ecec;
+    height: 70px;
+    align-items: center;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0px;
+}
+
+.BlockHead {
+    position: sticky;
+    top: 0px;
+}
+
+@media screen and (max-width: 715px) {
     #container-header {
-        display: flex;
-        width: 100%;
-        background-color: #f2ecec;
-        height: 70px;
-        align-items: center;
-        box-sizing: border-box;
-        position: sticky;
-        top: 0px;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
     }
 
-    .BlockHead {
-        position: sticky;
-        top: 0px;
-    }
-
-    @media screen and (max-width: 715px) {
-        #container-header {
-            flex-direction: column;
-            height: 100%;
-            justify-content: center;
-        }
-
-        #header-opciones {
-            flex-direction: column;
-            margin-top: 10px;
-        }
-        #header-opciones > div {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        #logo-itic-header {
-            display: flex;
-            justify-content: center;
-        }
-        #extensiones-header {
-            flex-direction: column;
-            margin: 0;
-            justify-content: center;
-        }
-        #extensiones-header p {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-    }
-    #container-header > div {
-        display: flex;
-    }
-    #logo-itic-header {
-        margin-left: 2%;
-        width: 30%;
-    }
-    #logo-itic-header img {
-        max-width: 120px;
-        max-height: 50px;
-        object-fit: contain;
-    }
     #header-opciones {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    #header-opciones > div {
         display: flex;
         justify-content: center;
-        gap: 8%;
-        width: 50%;
+        margin-bottom: 15px;
+    }
+
+    #logo-itic-header {
+        display: flex;
+        justify-content: center;
     }
     #extensiones-header {
-        display: flex;
-        justify-content: end;
-        width: 20%;
-        gap: 3%;
-        margin-right: 2%;
+        flex-direction: column;
+        margin: 0;
+        justify-content: center;
     }
-    #profile-dropdown {
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    #profile-dropdown img {
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .InfoHeader {
-        background-color: rgb(133, 133, 133);
-        display: flex;
-        width: 100%;
-        height: 50px;
-        margin: 0 auto;
-    }
-
-    .Phone {
-        display: flex;
-        align-items: center;
-        width: 12%;
-    }
-
-    .Phone img {
-        margin-left: 4%;
-        margin-right: 2%;
-    }
-
-    .Email {
-        display: flex;
-        align-items: center;
-        width: 19%;
-    }
-
-    .Email img {
-        margin-left: 2%;
-        margin-right: 2%;
-    }
-
-    .Location {
-        display: flex;
-        align-items: center;
-        width: 33%;
-    }
-
-    .Location img {
-        margin-left: 1%;
-        margin-right: 2%;
-    }
-
-    .Login {
-        display: flex;
-        align-items: center;
-        width: 36%;
-        justify-content: end;
-    }
-
-    .Login .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .Login img {
-        margin-right: 2%;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
+    #extensiones-header p {
         display: flex;
         justify-content: center;
-        align-items: center;
+        margin-bottom: 10px;
     }
+}
 
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        left: -90px;
-    }
+#container-header > div {
+    display: flex;
+}
 
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
+#logo-itic-header {
+    margin-left: 2%;
+    width: 30%;
+}
 
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-    }
+#logo-itic-header img {
+    max-width: 120px;
+    max-height: 50px;
+    object-fit: contain;
+}
 
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
+#header-opciones {
+    display: flex;
+    justify-content: center;
+    gap: 8%;
+    width: 50%;
+}
+
+#extensiones-header {
+    display: flex;
+    justify-content: end;
+    width: 20%;
+    gap: 3%;
+    margin-right: 2%;
+}
+
+#profile-dropdown {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#profile-dropdown img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.InfoHeader {
+    background-color: rgb(133, 133, 133);
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.Phone {
+    display: flex;
+    align-items: center;
+    width: 12%;
+}
+
+.Phone img {
+    margin-left: 4%;
+    margin-right: 2%;
+}
+
+.Email {
+    display: flex;
+    align-items: center;
+    width: 19%;
+}
+
+.Email img {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.Location {
+    display: flex;
+    align-items: center;
+    width: 33%;
+}
+
+.Location img {
+    margin-left: 1%;
+    margin-right: 2%;
+}
+
+.Login {
+    display: flex;
+    align-items: center;
+    width: 36%;
+    justify-content: end;
+}
+
+.Login .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.Login img {
+    margin-right: 2%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    display: block;
+}
+
+#header-opciones .dropdown {
+    position: relative;
+}
+
+#header-opciones .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#header-opciones .dropdown:hover .dropdown-content,
+#header-opciones .dropdown:focus-within .dropdown-content {
+    display: block;
+}
+
+#header-opciones .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+#header-opciones .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
 </style>
